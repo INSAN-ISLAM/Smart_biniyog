@@ -6,7 +6,7 @@ import 'package:smart_biniyog/App/modules/screens/profile/views/profile_page.dar
 import 'package:smart_biniyog/App/practice.dart';
 import 'package:smart_biniyog/App/routes/route_destinations.dart';
 import 'package:smart_biniyog/App/routes/route_names.dart';
-
+//comment
 void main() {
   // runApp(const MyApp());
 
