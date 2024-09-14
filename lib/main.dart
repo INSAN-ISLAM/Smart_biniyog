@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:get/get.dart';
 import 'package:smart_biniyog/App/modules/screens/profile/views/profile_page.dart';
+import 'package:smart_biniyog/App/modules/screens/project_details/views/project_details_screen.dart';
 import 'package:smart_biniyog/App/practice.dart';
 import 'package:smart_biniyog/App/routes/route_destinations.dart';
 import 'package:smart_biniyog/App/routes/route_names.dart';
+
+import 'App/modules/screens/project_details/views/project_details_page.dart';
 //comment
 void main() {
   // runApp(const MyApp());
@@ -35,9 +38,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       getPages: RouteDestinations.pages,
-      initialRoute: RouteNames.dashBoard,
+     // initialRoute: RouteNames.dashBoard,
 
-     //home: ProfilePageScreen(),       //
+     home: ProjectDetailScreen(),       //
       //        DashBoardScreen(),
     );
   }

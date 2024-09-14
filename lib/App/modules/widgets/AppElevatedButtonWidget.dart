@@ -4,7 +4,8 @@ class AppElevatedButton extends StatelessWidget {
   const AppElevatedButton({
     Key? key,
     required this.child,
-    required this.onTap, this.Color,
+    required this.onTap,
+    this.Color,
   }) : super(key: key);
 
   final Widget child;
@@ -18,17 +19,12 @@ class AppElevatedButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-             // side: BorderSide(color: Colors.red),
+              // side: BorderSide(color: Colors.red),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
-
-
-
-              ),
+                  borderRadius: BorderRadius.circular(10)),
               backgroundColor: Color,
-              padding: const EdgeInsets.all(20)),
+             ),
           onPressed: onTap,
-
           child: child),
     );
   }

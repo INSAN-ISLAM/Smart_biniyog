@@ -1,159 +1,144 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:smart_biniyog/App/modules/Screens/about_page.dart';
 import 'package:smart_biniyog/App/modules/Screens/summary_page.dart';
 import 'package:smart_biniyog/App/modules/Screens/profit_simulation/views/profit_simu_page.dart';
-import 'package:smart_biniyog/App/modules/Screens/project_details/controller/project_details-controller.dart';
 import 'package:smart_biniyog/App/modules/Widgets/AppElevatedButtonWidget.dart';
 
-class ProjectDetailScreen extends GetView<ProjectDetailsController> {
+class ProjectDetailScreen extends StatefulWidget {
   const ProjectDetailScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return  DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(title: Center(child: Text('Project Details',
+  _ProjectDetailScreenState createState() => _ProjectDetailScreenState();
+}
 
-        ),
+class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
+        setState(() {
+          _selectedIndex = _tabController.index;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  void _onButtonPressed() {
+    if (_selectedIndex == 0) {
+      setState(() {
+        _tabController.index=1;
+      });
+
+    } else if (_selectedIndex == 1) {
+      setState(() {
+        _tabController.index=2;
+      });
+
+    } else if (_selectedIndex == 2) {
+      // Action for About tab
+      print("About tab action");
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(
+          child: Text(
+            'Project Details',
+          ),
         ),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart))
-
+          IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart))
         ],
-
-
-        ),
-        body:Column(
-          //crossAxisAlignment: CrossAxisAlignment.start,
-          //mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            Expanded(
-              flex: 30,
-              child: Row(
-                children: [
-                  Container(
-
-               color: Colors.green,
-
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            flex: 30,
+            child: Row(
+              children: [
+                Container(
+                  color: Colors.green,
                   child: Center(
-                    child: Image.asset('assets/images/Agriculture.jpg',
+                    child: Image.asset(
+                      'assets/images/Agriculture.jpg',
                       width: MediaQuery.of(context).size.width,
-                  fit: BoxFit.fill,
-
+                      fit: BoxFit.fill,
                     ),
                   ),
+                ),
+              ],
             ),
-                ],
-              ),),
+          ),
+          Expanded(
+            flex: 55,
+            child: Column(
+              children: [
+                Container(
+                  color: Colors.black12,
+                  child: TabBar(
+                    controller: _tabController,
+                    indicatorColor: Colors.teal,
+                    labelColor: Colors.teal,
+                    unselectedLabelColor: Colors.black,
+                    isScrollable: true,
+                    tabs: [
+                      Tab(text: 'Summary'),
+                      Tab(text: 'About'),
+                      Tab(text: 'Profit Simulation'),
 
-
-
-
-
-            Expanded(
-              flex: 50,
-              child: Column(
-                children: [
-                  Container(
-                    color: Colors.black12, // Background color for TabBar
-                    child: TabBar(
-                      indicatorColor: Colors.teal, // Indicator color for selected tab
-                      labelColor: Colors.teal, // Color for selected tab text
-                      unselectedLabelColor:
-                      Colors.black,
-                      isScrollable:true,// Color for unselected tab text
-                      tabs: [
-                        Tab(text: 'Summary'),
-                        Tab(text: 'Profit_Simulation'),
-                        Tab(text: 'About'),
-                      ],
-                    ),
+                    ],
                   ),
-                  Expanded(
-                    child: TabBarView(
-                      children: [
-                        Center(child: SummaryScreen()),
-                        Center(child: ProfitSimuScreen()),
-                        Center(child: AboutSreen()),
-                      ],
-                    ),
-                  ),
-
-
-
-
-
-                ],
-              ),),
-
-
-
-
-
-
-
-            Expanded(
-                flex: 10,
-
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
+                ),
+                Expanded(
+                  child: TabBarView(
+                    controller: _tabController,
                     children: [
+                      Center(child: SummaryScreen()),
+                      Center(child: AboutSreen()),
+                      Center(child: ProfitSimuScreen()),
 
-
-
-                      SizedBox(height: 10,),
-                      Container(
-                        height: 48,
-                        color: Colors.white,
-
-                        child: AppElevatedButton(
-                          Color: Colors.green,
-                          onTap: () {
-
-
-
-                          },
-
-                          child:  Center(
-                            child: Text("Book Now",
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                  color: Color(0xFFFFFFFF),
-                                  fontSize: 14,
-                                  //fontWeight: FontWeight.w700,
-
-                                ),
-                              ),
-
-                            ),
-                          ),
-                        ),
-                      ),
-
-
-         ],
+                    ],
                   ),
-                ))
-          ],
-        ),
-
-
-        floatingActionButtonLocation:FloatingActionButtonLocation.endFloat,
-
-        floatingActionButton: FloatingActionButton(
-          elevation: 10,
-          child: Icon(Icons.phone) ,
-          backgroundColor: Colors.green,
-          onPressed: (){
-
-          },
-        ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: AppElevatedButton(
+              Color: Colors.green,
+              onTap: _onButtonPressed,
+              child: Center(
+                child: Text(
+                  _selectedIndex == 0 ? "Next" :
+                  _selectedIndex == 1 ? "Next" : "Add to Cart",
+                  style: GoogleFonts.poppins(
+                    textStyle: const TextStyle(
+                      color: Color(0xFFFFFFFF),
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
