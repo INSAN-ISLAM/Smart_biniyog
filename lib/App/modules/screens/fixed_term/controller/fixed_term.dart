@@ -20,7 +20,7 @@ Future<bool> getFixedTermProcect() async {
   final response = await NetworkUtils().getMethod(
     Urls.fixedtermprojecturl,
   );
-  print("short_response:$response");
+  print("fixed:$response");
   fixedProjectProgress = false;
   if (response != null) {
     FixedProjectDataModel = FixedModel.fromJson(response);

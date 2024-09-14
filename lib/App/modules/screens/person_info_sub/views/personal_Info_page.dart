@@ -251,22 +251,38 @@ class _PersonInfoScreenState extends State<PersonInfoScreen> {
                     Color: Colors.green,
                     onTap: () async {
                       personInfoController.profileUpdate();
-                      // if (_formKey.currentState!.validate()) {
-                      //
-                      //   Map <String,dynamic>data= {
+
+
+
+                      //   Map <String,dynamic>body1= {
                       //     "name":  _nameController.text.trim(),
                       // "email":   _EmailController.text.trim(),
                       // "phone": _PhnNumController.text.trim(),
-                      // //"address": "123 Elm Street, Springfield",
+                      // "address": "123 Elm Street, Springfield",
                       // "nid":    _DateBirthlController.text.trim(),
                       // "tin":  _TINController.text.trim(),
-                      // //"image": "path/to/image.jpg",
+                      // "image": "path/to/image.jpg",
                       // "nid_f":_nid_frontPartlController.text.trim(),
                       // "nid_b":     _nid_backlController.text.trim(),
-                      // //"gender":gen,
+                      // "gender":'gen',
                       // "client_type":_val.toString(),
                       // };
-                      //   personInfoController.profileUpdate(data);
+                      // if (_formKey.currentState!.validate()) {
+                      //
+                      // //   Map <String,dynamic>body1= {
+                      // //     "name":  _nameController.text.trim(),
+                      // // "email":   _EmailController.text.trim(),
+                      // // "phone": _PhnNumController.text.trim(),
+                      // // "address": "123 Elm Street, Springfield",
+                      // // "nid":    _DateBirthlController.text.trim(),
+                      // // "tin":  _TINController.text.trim(),
+                      // // "image": "path/to/image.jpg",
+                      // // "nid_f":_nid_frontPartlController.text.trim(),
+                      // // "nid_b":     _nid_backlController.text.trim(),
+                      // // "gender":'gen',
+                      // // "client_type":_val.toString(),
+                      // // };
+                      //  // personInfoController.profileUpdate(data);
                       //
                       //
                       //

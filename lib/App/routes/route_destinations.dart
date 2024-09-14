@@ -58,7 +58,7 @@ class RouteDestinations{
     GetPage(name: RouteNames.moreScreen, page:()=> const MorePageScreen(),binding: MoreBinding()),
     GetPage(name: RouteNames.bestProject, page:()=> const BestProjectScreen(),binding: BestProjectBinding()),
     GetPage(name: RouteNames.projectReviewList, page:()=> const ProjectReviewList(),binding: ProjectReviewListBinding()),
-    GetPage(name: RouteNames.projectReviewDetail, page:()=>  ProjectReviewDetails(),binding: ProjectReviewDetailsBinding()),
+    GetPage(name: RouteNames.projectReviewDetail, page:()=>  const ProjectReviewDetails(),binding: ProjectReviewDetailsBinding()),
     GetPage(name: RouteNames.profile, page:()=> const ProfilePageScreen(),binding: ProfileBinding()),
     GetPage(name: RouteNames.changePersonalInfo, page:()=> const ChangePerInfo(),binding: ChangePerInfoBinding()),
     GetPage(name: RouteNames.changeFinancialInfo, page:()=>  ChangeFinancialScreen(),binding: ChangeFinancialBinding()),

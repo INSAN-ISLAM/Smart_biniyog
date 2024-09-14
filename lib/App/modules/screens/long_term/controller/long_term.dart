@@ -24,7 +24,7 @@ class LongTermController extends GetxController{
     final response = await NetworkUtils().getMethod(
       Urls.longtermprojecturl,
     );
-    print("short_response:$response");
+    print("Long:$response");
     longProjectProgress = false;
     if (response != null) {
       LongProjectDataModel = LongTermModel.fromJson(response);

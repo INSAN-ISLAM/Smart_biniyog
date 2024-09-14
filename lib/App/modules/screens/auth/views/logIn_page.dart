@@ -14,6 +14,7 @@ class LogInSreen extends GetView<LogInScreenController> {
   LogInSreen({Key? key}) : super(key: key);
 
   final TextEditingController _emailETController = TextEditingController();
+  final TextEditingController _rcodeETController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -88,7 +89,20 @@ class LogInSreen extends GetView<LogInScreenController> {
                     )),
                     AppTextFieldWidget(
                       controller: _emailETController,
-                      hintText: 'Enter Phone number/Email',
+                      hintText: 'Enter Phone Email',
+                      validator: (value) {
+                        if (value?.isEmpty ?? true) {
+                          return 'Enter your valid Phn Num Or email';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    AppTextFieldWidget(
+                      controller: _rcodeETController,
+                      hintText: 'refer_code',
                       validator: (value) {
                         if (value?.isEmpty ?? true) {
                           return 'Enter your valid Phn Num Or email';
@@ -102,7 +116,7 @@ class LogInSreen extends GetView<LogInScreenController> {
                     GetBuilder<LogInScreenController>(
                         builder: (LogInScreenController) {
                       return Container(
-                        height: 48,
+                        height: 55,
                         width: 358,
                         color: Colors.white,
                         child: AppElevatedButton(
@@ -111,8 +125,10 @@ class LogInSreen extends GetView<LogInScreenController> {
                             if (_formKey.currentState!.validate()) {
                               Get.toNamed(RouteNames.phnEmailOtpScreen);
                              // // // Get.toNamed(RouteNames.phnEmailOtpScreen);
+                             //  print(_emailETController.text.trim());
                              //  final result = await LogInScreenController.verifyEmailPhn(
                              //    _emailETController.text.trim(),
+                             //
                              //  );
                              //
                              //  if (result != null && result['status'] == 'true') {
@@ -149,8 +165,8 @@ class LogInSreen extends GetView<LogInScreenController> {
                              // //  //   //       'Registration Failed! Try again', true);
                              // //  //   // }
                              //   }
-
-
+                             //
+                             //
 
 
                             }

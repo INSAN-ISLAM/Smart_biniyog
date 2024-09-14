@@ -77,8 +77,8 @@ class MyCardScreen extends GetView<MyCardController> {
    ProjectReviewListController projectReviewListController=Get.put(ProjectReviewListController());
   @override
   Widget build(BuildContext context) {
-    final Map<String, String> arguments = Get.arguments;
-    print(arguments['id']);
+    // final Map<String, String> arguments = Get.arguments;
+    // print(arguments['id']);
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text('My Cart')),
@@ -115,7 +115,7 @@ class MyCardScreen extends GetView<MyCardController> {
                   ),
                 ),
                 Expanded(
-                  flex: 75,
+                  flex: 70,
                   child:  Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,

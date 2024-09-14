@@ -51,7 +51,7 @@ appBar: AppBar(
                     // indent: 20,
                     // endIndent: 20,                      //${arguments['email']}
                   ),
-Text('please enter the verification code sent to \n this number '),
+Text('please enter the verification code sent to \n  this number  '),
                   SizedBox(height: 6,),
                   Text('change Number'),
                   SizedBox(height: 6,),

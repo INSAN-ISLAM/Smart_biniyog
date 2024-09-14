@@ -22,6 +22,9 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
   final ValueNotifier<int> _currentCarouselIndex = ValueNotifier(0);
 
   HomeController homeController=Get.put(HomeController());
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

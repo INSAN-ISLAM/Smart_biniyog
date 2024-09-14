@@ -10,6 +10,7 @@ class Urls {
  static String longtermprojecturl = '$baseUrl/project/2';
  static String fixedtermprojecturl = '$baseUrl/project/4';
  static String projectreviewurl = '$baseUrl/project/reviews';
+ static String PersonInfowurl = '$baseUrl/user-info';
 
 
 

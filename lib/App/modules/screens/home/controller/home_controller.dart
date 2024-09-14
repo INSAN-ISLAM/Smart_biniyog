@@ -43,7 +43,7 @@ class HomeController extends GetxController {
     final response = await NetworkUtils().getMethod(
       Urls.businesstypeurl,
     );
-    print("response:$response");
+    //print("response:$response");
     ProjectTypeProgress = false;
     if (response != null) {
       ProjectTypeDataModel = ProjectTypeModel.fromJson(response);
@@ -66,7 +66,7 @@ class HomeController extends GetxController {
     final response = await NetworkUtils().getMethod(
       Urls.allprojecturl,
     );
-    print("All response:$response");
+   // print("All response:$response");
     reviewProjectProgress = false;
     if (response != null) {
       AllProjectDataModel = AllProjectModel.fromJson(response);

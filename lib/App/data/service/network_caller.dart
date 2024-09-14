@@ -12,20 +12,20 @@ class NetworkUtils {
       final http.Response response = await http.get(Uri.parse(url),
         headers: {
           "Content-Type": "application/json",
-                                                                              // 'token': AuthUtils.token ?? ''
-          },
+          // 'token': AuthUtils.token ?? ''
+        },
 
       );
-      log('result:${response.body}');
+      //log('result:${response.body}');
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
       }
       //else if (response.statusCode == 401) {
-        // if (onUnAuthorize != null) {
-        //   onUnAuthorize();
-        // } else {
-        //   //moveToLogin();
-        // }
+      // if (onUnAuthorize != null) {
+      //   onUnAuthorize();
+      // } else {
+      //   //moveToLogin();
+      // }
       //}
       else {
         log("Something went wrong");
@@ -41,11 +41,11 @@ class NetworkUtils {
 
 
     String url="https://agro.smartbiniyog.com/api/client-v1/update-profile";
-    String token="22|jaGp9u5sMJL9VT38y2czVkQAJPyJbKyLK99CfSlX352ecbea";
+    String token="49|l1Wi5Z2ah7KZS1mCsyI9tuZbslHGDtVAoSUXEmG4c99f4b04";
     Map<String,String> headers= {
       "Content-Type": "application/json",
       'Authorization': 'Bearer $token',
-     };
+    };
 
     Map<String,dynamic> body1={
       "name": "insan",
@@ -94,7 +94,7 @@ class NetworkUtils {
       //   } else {
       //     moveToLogin();
       //   }
-       else {
+      else {
         log("Something went wrong ${response.statusCode}");
       }
     } catch (e) {
@@ -133,18 +133,3 @@ class NetworkUtils {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

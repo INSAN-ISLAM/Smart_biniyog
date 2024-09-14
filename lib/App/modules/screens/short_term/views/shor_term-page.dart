@@ -64,12 +64,7 @@ class ShortTermScreen extends GetView<ShortTermController>{
                           padding:
                           EdgeInsets.fromLTRB(
                               10, 0, 0, 0),
-                          child: Text(
-                            // ProjectController
-                            //     .AllProjectDataModel
-                            //     .data?[index]
-                            //     .name ??
-                            'Unknown',
+                          child: Text(e.name.toString(),
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight:

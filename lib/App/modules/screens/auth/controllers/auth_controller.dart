@@ -37,7 +37,10 @@ class LogInScreenController extends  GetxController{
     loginInProgress = true;
     update();
     return await NetworkUtils().authPostMethod(Urls.verifyEmailPhn,              //final result =
-        body: {'contact': email});
+        body: {
+           'contact': email,
+         // 'referral_code': rcode,
+    });
 
    loginInProgress = false;
 

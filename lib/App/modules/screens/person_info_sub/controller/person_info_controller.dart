@@ -9,7 +9,7 @@ class PersonInfoController extends GetxController{
 
   bool loginInProgress = false;
 
-   profileUpdate() async {
+  profileUpdate() async {
 
     try{
       http.Response response= await networkUtils.profilepostMethod();

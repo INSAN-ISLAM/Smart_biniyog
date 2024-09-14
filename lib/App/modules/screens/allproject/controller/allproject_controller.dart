@@ -23,7 +23,7 @@ class AllProjectController extends GetxController{
     final response = await NetworkUtils().getMethod(
       Urls.allprojecturl,
     );
-    print("All response:$response");
+   // print("All response:$response");
     allProjectProgress = false;
     if (response != null) {
       AllProjectDataModel = AllProjectModel.fromJson(response);
