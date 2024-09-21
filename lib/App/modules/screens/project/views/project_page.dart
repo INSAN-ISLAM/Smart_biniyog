@@ -19,6 +19,8 @@ class ProjectPageScreen extends GetView<ProjectController> {
       child: Scaffold(
         appBar: AppBar(
           title: Center(child: const Text('All Projects')),
+
+
           actions: [
             IconButton(
                 onPressed: () {

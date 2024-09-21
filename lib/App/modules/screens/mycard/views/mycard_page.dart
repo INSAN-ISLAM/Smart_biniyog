@@ -84,403 +84,372 @@ class MyCardScreen extends GetView<MyCardController> {
         title: Center(child: Text('My Cart')),
       ),
 
-      body:Column(
-        children: [
-          Divider(
-            color: Colors.grey,
-            // height: 10,
-            thickness: 2,
-            // indent: 20,
-            // endIndent: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 30,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 30,
                     child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10)),
+
                       child: Image.asset(
                         'assets/images/Cowmarket.jpeg',
                         fit: BoxFit.fill,
-                        height: 100,
+                        height:70,
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 70,
-                  child:  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text(
-                          'Cattle Trade-15',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black),
+                  Expanded(
+                    flex: 35,
+                    child:  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                          child: Text(
+                            'Cattle Trade-15',
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Row(
-                          children: [
-                            Text(
-                              '25,000 BDT/Unit',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black),
-                            ),
-                            SizedBox(width: 10,),
-                            ProductStepper(
-                              onDecrement: (int currentValue) {  },
-                              onIncrement: (int currentValue) {  },),
-
-
-
-
-
-                          ],
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                          child:  Text(
+                            '25,000 BDT',
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black),
+                          ),
                         ),
-                      ),
 
 
-                    ],
+
+                      ],
+                    ),
                   ),
-                ),
+                  Expanded(
+                    flex: 40,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                      child: ProductStepper(
+                        onDecrement: (int currentValue) {  },
+                        onIncrement: (int currentValue) {  },),
+                    ),
+                  ),
 
-              ],
+                ],
+              ),
             ),
-          ),
-          Divider(
-            color: Colors.grey,
-            // height: 10,
-            thickness: 2,
-            // indent: 20,
-            // endIndent: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 30,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+            Divider(
+              color: Colors.grey,
+              // height: 10,
+              thickness: 2,
+              // indent: 20,
+              // endIndent: 20,
+            ),
+            Divider(
+              color: Colors.grey,
+              // height: 10,
+              thickness: 2,
+              // indent: 20,
+              // endIndent: 20,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 30,
                     child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10)),
+
                       child: Image.asset(
                         'assets/images/Cowmarket.jpeg',
                         fit: BoxFit.fill,
-                        height: 100,
+                        height:70,
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 75,
-                  child:  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text(
-                          'Cattle Trade-15',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black),
+                  Expanded(
+                    flex: 35,
+                    child:  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                          child: Text(
+                            'Cattle Trade-15',
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Row(
-                          children: [
-                            Text(
-                              '25,000 BDT/Unit',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black),
-                            ),
-                            SizedBox(width: 10,),
-                            ProductStepper(
-                              onDecrement: (int currentValue) {  },
-                              onIncrement: (int currentValue) {  },),
-
-
-
-
-
-                          ],
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                          child:  Text(
+                            '25,000 BDT',
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black),
+                          ),
                         ),
-                      ),
 
 
-                    ],
+
+                      ],
+                    ),
                   ),
-                ),
+                  Expanded(
+                    flex: 40,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                      child: ProductStepper(
+                        onDecrement: (int currentValue) {  },
+                        onIncrement: (int currentValue) {  },),
+                    ),
+                  ),
 
-              ],
+                ],
+              ),
             ),
-          ),
-          Divider(
-            color: Colors.grey,
-            // height: 10,
-            thickness: 2,
-            // indent: 20,
-            // endIndent: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 30,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+
+            Divider(
+              color: Colors.grey,
+              // height: 10,
+              thickness: 2,
+              // indent: 20,
+              // endIndent: 20,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 30,
                     child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10)),
+
                       child: Image.asset(
                         'assets/images/Cowmarket.jpeg',
                         fit: BoxFit.fill,
-                        height: 100,
+                        height:70,
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 75,
-                  child:  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text(
-                          'Cattle Trade-15',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black),
+                  Expanded(
+                    flex: 35,
+                    child:  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                          child: Text(
+                            'Cattle Trade-15',
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Row(
-                          children: [
-                            Text(
-                              '25,000 BDT/Unit',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black),
-                            ),
-                            SizedBox(width: 10,),
-                            ProductStepper(
-                              onDecrement: (int currentValue) {  },
-                              onIncrement: (int currentValue) {  },),
-
-
-
-
-
-                          ],
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                          child:  Text(
+                            '25,000 BDT',
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black),
+                          ),
                         ),
-                      ),
 
 
-                    ],
+
+                      ],
+                    ),
                   ),
-                ),
+                  Expanded(
+                    flex: 40,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                      child: ProductStepper(
+                        onDecrement: (int currentValue) {  },
+                        onIncrement: (int currentValue) {  },),
+                    ),
+                  ),
 
-              ],
+                ],
+              ),
             ),
-          ),
-          Divider(
-            color: Colors.grey,
-            // height: 10,
-            thickness: 2,
-            // indent: 20,
-            // endIndent: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 30,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+
+            Divider(
+              color: Colors.grey,
+              // height: 10,
+              thickness: 2,
+              // indent: 20,
+              // endIndent: 20,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 30,
                     child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10)),
+
                       child: Image.asset(
                         'assets/images/Cowmarket.jpeg',
                         fit: BoxFit.fill,
-                        height: 100,
+                        height:70,
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 75,
-                  child:  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text(
-                          'Cattle Trade-15',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black),
+                  Expanded(
+                    flex: 35,
+                    child:  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                          child: Text(
+                            'Cattle Trade-15',
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Row(
-                          children: [
-                            Text(
-                              '25,000 BDT/Unit',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black),
-                            ),
-                            SizedBox(width: 10,),
-                            ProductStepper(
-                              onDecrement: (int currentValue) {  },
-                              onIncrement: (int currentValue) {  },),
-
-
-
-
-
-                          ],
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                          child:  Text(
+                            '25,000 BDT',
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black),
+                          ),
                         ),
-                      ),
 
 
-                    ],
+
+                      ],
+                    ),
                   ),
-                ),
+                  Expanded(
+                    flex: 40,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                      child: ProductStepper(
+                        onDecrement: (int currentValue) {  },
+                        onIncrement: (int currentValue) {  },),
+                    ),
+                  ),
 
-              ],
+                ],
+              ),
             ),
-          ),
-          Divider(
-            color: Colors.grey,
-            // height: 10,
-            thickness: 2,
-            // indent: 20,
-            // endIndent: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-                width: double.infinity,
-                color: Colors.green[50],
-                height: 60,
-
-                child: const ListTile(
-                 trailing: Text('45,000 BDT',
-                style: TextStyle(
-                  fontSize: 15,
-
-                ),
-
-                 ),
-                  title: Text('Total',
-                    style: TextStyle(
-                      fontSize: 15,
-
-                    ),),
 
 
 
-                )),
-          ),
-          TextButton(
-            style:TextButton.styleFrom(
-                side: BorderSide(color: Colors.red),
-                foregroundColor: Colors.green,
-               padding: const EdgeInsets.all(20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)
-
-
-
-                ),
-                elevation: 5
-
+            Divider(
+              color: Colors.grey,
+              // height: 10,
+              thickness: 2,
+              // indent: 20,
+              // endIndent: 20,
             ),
-            onPressed: () {
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  width: double.infinity,
+                  color: Colors.green[50],
+                  height: 60,
 
-              Get.toNamed(RouteNames.projectScreen);
-            },
-            child: Text('+ Add More Project',
-            style: TextStyle(fontSize: 15),
+                  child: const ListTile(
+                   trailing: Text('45,000 BDT',
+                  style: TextStyle(
+                    fontSize: 15,
+
+                  ),
+
+                   ),
+                    title: Text('Total',
+                      style: TextStyle(
+                        fontSize: 15,
+
+                      ),),
+
+
+
+                  )),
             ),
-          ),
+            TextButton(
+              style:TextButton.styleFrom(
+                  side: BorderSide(color: Colors.red),
+                  foregroundColor: Colors.green,
+                 padding: const EdgeInsets.all(20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)
 
-          SizedBox(height: 30,),
 
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: AppElevatedButton(
-Color: Colors.green,
-              onTap: () {
-                MyAlertDialog(context);
 
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(builder: (context) => Personal_infoScreen()));
+                  ),
+                  elevation: 5
+
+              ),
+              onPressed: () {
+
+                Get.toNamed(RouteNames.projectScreen);
               },
-            child: Text('CheckOut',
-            style: TextStyle(
-              fontSize: 15,
-     color: Colors.white
+              child: Text('+ Add More Project',
+              style: TextStyle(fontSize: 15),
+              ),
             ),
 
-            ),),
-          ),
+            SizedBox(height: 30,),
 
-        ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: AppElevatedButton(
+Color: Colors.green,
+                onTap: () {
+                 // MyAlertDialog(context);
+                  Get.toNamed(RouteNames.personInfoScreen);
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(builder: (context) => Personal_infoScreen()));
+                },
+              child: Text('CheckOut',
+              style: TextStyle(
+                fontSize: 15,
+     color: Colors.white
+              ),
+
+              ),),
+            ),
+
+          ],
       ),
+        ),),
 
       floatingActionButtonLocation:FloatingActionButtonLocation.endFloat,
 

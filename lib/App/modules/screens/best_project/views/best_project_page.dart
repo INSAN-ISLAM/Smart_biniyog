@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_biniyog/App/modules/Widgets/AppElevatedButtonWidget.dart';
 import 'package:smart_biniyog/App/modules/screens/best_project/controller/best_project_controller.dart';
+import 'package:smart_biniyog/App/routes/route_names.dart';
 
 
 class BestProjectScreen extends GetView<BestProjectController> {
@@ -89,7 +90,7 @@ class BestProjectScreen extends GetView<BestProjectController> {
                           Color: Colors.green,
                           onTap: () {
                             //MyAlertDialog(context);
-
+                            Get.toNamed(RouteNames.projectScreen);
                             // Navigator.push(
                             //     context,
                             //     MaterialPageRoute(builder: (context) => Personal_infoScreen()));
@@ -183,7 +184,7 @@ class BestProjectScreen extends GetView<BestProjectController> {
                           Color: Colors.green,
                           onTap: () {
                             //MyAlertDialog(context);
-
+                            Get.toNamed(RouteNames.projectScreen);
                             // Navigator.push(
                             //     context,
                             //     MaterialPageRoute(builder: (context) => Personal_infoScreen()));
@@ -277,7 +278,7 @@ class BestProjectScreen extends GetView<BestProjectController> {
                           Color: Colors.green,
                           onTap: () {
                             //MyAlertDialog(context);
-
+                            Get.toNamed(RouteNames.projectScreen);
                             // Navigator.push(
                             //     context,
                             //     MaterialPageRoute(builder: (context) => Personal_infoScreen()));
@@ -372,7 +373,7 @@ class BestProjectScreen extends GetView<BestProjectController> {
                           Color: Colors.green,
                           onTap: () {
                             //MyAlertDialog(context);
-
+                            Get.toNamed(RouteNames.projectScreen);
                             // Navigator.push(
                             //     context,
                             //     MaterialPageRoute(builder: (context) => Personal_infoScreen()));

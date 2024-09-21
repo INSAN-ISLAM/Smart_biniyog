@@ -46,25 +46,60 @@ class ProjectReviewDetailsController extends GetxController{
 
 
 
-  bool ProjectReviewProgress = false;
+  // bool ProjectReviewProgress = false;
+  //
+  //
+  // Future<dynamic> ProjectReviews(String projectId,String rating,String reviewText) async {
+  //   ProjectReviewProgress = true;
+  //   update();
+  //   return await NetworkUtils().PostMethod(Urls.projectreviewurl,              //final result =
+  //       body: {
+  //         "project_id": projectId,
+  //         "rating": rating,
+  //         "review_text": reviewText,
+  //
+  //   });
+  //
+  //   ProjectReviewProgress = false;
+  //
+  // }
 
 
-  Future<dynamic> ProjectReviews(String project_id,String rating,String review_text) async {
-    ProjectReviewProgress = true;
-    update();
-    return await NetworkUtils().PostMethod(Urls.projectreviewurl,              //final result =
-        body: {
-          "project_id": project_id,
-          "rating": rating,
-          "review_text": review_text,
 
-    });
 
-    ProjectReviewProgress = false;
+}
+class ProjectReviewController extends GetxController{
 
+
+
+  @override
+  void onInit() {
+    getReviewProcected();
+    super.onInit();
   }
 
 
+  bool reviewProjectProgress = false;
+  AllProjectModel AllProjectDataModel = AllProjectModel();
+
+
+  Future<bool> getReviewProcected() async {
+    reviewProjectProgress = true;
+    update();
+    final response = await NetworkUtils().getMethod(
+      Urls.allprojecturl,
+    );
+    print("All response:$response");
+    reviewProjectProgress = false;
+    if (response != null) {
+      AllProjectDataModel = AllProjectModel.fromJson(response);
+      update();
+      return true;
+    } else {
+      update();
+      return false;
+    }
+  }
 
 
 }

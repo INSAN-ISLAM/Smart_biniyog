@@ -6,7 +6,7 @@ import 'package:smart_biniyog/App/data/urls/urls.dart';
 class PersonalInfoGetController extends GetxController{
 
   bool personInfoProgress = false;
-  PersonInfoModel personInfoDataModel = PersonInfoModel();
+ PersonInfoModel personInfoDataModel = PersonInfoModel();
 
 
   Future<bool> getPersonInfo() async {
@@ -31,7 +31,7 @@ class PersonalInfoGetController extends GetxController{
 
   @override
   void onInit() {
-    // TODO: implement onInit
+    getPersonInfo();
     super.onInit();
   }
 

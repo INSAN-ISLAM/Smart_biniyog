@@ -5,26 +5,51 @@ import 'package:http/http.dart' as http;
 
 class PersonInfoController extends GetxController{
 
-  NetworkUtils networkUtils=NetworkUtils();
 
-  bool loginInProgress = false;
+  //
+  // NetworkUtils networkUtils=NetworkUtils();
+  // bool loginInProgress = false;
+  // profileUpdate() async {
+  //
+  //   try{
+  //     http.Response response= await networkUtils.profilepostMethod();
+  //     print(response.statusCode);
+  //     print(response.body);
+  //
+  //
+  //   }catch(e){
+  //     print(e);
+  //   }
+  //
+  //
+  //
+  // }
 
-  profileUpdate() async {
 
-    try{
-      http.Response response= await networkUtils.profilepostMethod();
-      print(response.statusCode);
+  Future<dynamic> profileInfoSubmit(String type,String name,String phnN,String gmail,String birth,String nid,String tin,String gen) async {
+    //loginInProgress = true;
+    update();
+    return await NetworkUtils().PostMethod(
+        Urls.updateprofileurl,              //final result =
+        body: {
+          "client_type":type,
+          "name": name,
+          "phone": phnN,
+          "email": gmail,
+          "date_birth":birth,
+          "nid":nid,
+          "tin": tin,
+         // "image": image,
+         // "nid_f": nidF,
+         // "nid_b":nidB,
+          "gender":gen,
 
 
-    }catch(e){
-      print(e);
-    }
-
-
+        });
+//,String image,String nidF,String nidB
+    //loginInProgress = false;
 
   }
-
-
 
 
 

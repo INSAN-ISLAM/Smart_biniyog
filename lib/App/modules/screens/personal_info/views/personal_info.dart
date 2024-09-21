@@ -107,7 +107,7 @@ class PersonalInfoScreen extends GetView<PersonalInfoGetController> {
                       ),
                       ListTile(
                         iconColor: Colors.black,
-                        trailing: Text('N/A', style: TextStyle(
+                        trailing: Text(' ${PersonalInfoGetController.personInfoDataModel.client!.name}', style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
                           fontSize: 15,
@@ -123,7 +123,7 @@ class PersonalInfoScreen extends GetView<PersonalInfoGetController> {
                       ),
                       ListTile(
                         iconColor: Colors.black,
-                        trailing: Text('N/A', style: TextStyle(
+                        trailing: Text(' ${PersonalInfoGetController.personInfoDataModel.client!.email}', style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
                           fontSize: 15,
@@ -139,7 +139,7 @@ class PersonalInfoScreen extends GetView<PersonalInfoGetController> {
                       ),
                       ListTile(
                         iconColor: Colors.black,
-                        trailing: Text('N/A', style: TextStyle(
+                        trailing: Text(' 05-05-1999', style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
                           fontSize: 15,
@@ -155,7 +155,7 @@ class PersonalInfoScreen extends GetView<PersonalInfoGetController> {
                       ),
                       ListTile(
                         iconColor: Colors.black,
-                        trailing: Text('N/A', style: TextStyle(
+                        trailing: Text(' ${PersonalInfoGetController.personInfoDataModel.client!.nid}', style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
                           fontSize: 15,
@@ -171,7 +171,7 @@ class PersonalInfoScreen extends GetView<PersonalInfoGetController> {
                       ),
                       ListTile(
                         iconColor: Colors.black,
-                        trailing: Text('N/A', style: TextStyle(
+                        trailing: Text(' ${PersonalInfoGetController.personInfoDataModel.client!.gender}', style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
                           fontSize: 15,
@@ -187,7 +187,7 @@ class PersonalInfoScreen extends GetView<PersonalInfoGetController> {
                       ),
                       ListTile(
                         iconColor: Colors.black,
-                        trailing: Text('N/A', style: TextStyle(
+                        trailing: Text(' ${PersonalInfoGetController.personInfoDataModel.client!.tin}', style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
                           fontSize: 15,

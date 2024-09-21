@@ -24,8 +24,8 @@ class _PhnEmailOtpVerifyScreenState extends State<PhnEmailOtpVerifyScreen> {
   final String _code = "";
   @override
   Widget build(BuildContext context) {
-    //  final Map<String, String> arguments = Get.arguments;
-    // print(Get.arguments);
+     final Map<String, String> arguments = Get.arguments;
+    print(Get.arguments);
 
     return  Scaffold(
 appBar: AppBar(
@@ -51,7 +51,7 @@ appBar: AppBar(
                     // indent: 20,
                     // endIndent: 20,                      //${arguments['email']}
                   ),
-Text('please enter the verification code sent to \n  this number  '),
+Text('please enter the verification code sent to \n  this number ${arguments['email']} '),
                   SizedBox(height: 6,),
                   Text('change Number'),
                   SizedBox(height: 6,),
@@ -116,57 +116,57 @@ Text('please enter the verification code sent to \n  this number  '),
                           onTap: () async {
                             if (_formKey.currentState!.validate()) {
                          Get.toNamed(RouteNames.mainNavigationScreen);
-                         //      print(arguments['email']);
-                         //      final response = await PhnEmailOtpController.otpEmailPhn(
-                         //        arguments['email'].toString(),
-                         //        _otpPinETController.text.trim(),
+                              print(arguments['email']);
+                              final response = await PhnEmailOtpController.otpEmailPhn(
+                                arguments['email'].toString(),
+                                _otpPinETController.text.trim(),
+                              );
+                              Get.toNamed(RouteNames.mainNavigationScreen);
+                              // if (response) {
+                              //   Get.toNamed(RouteNames.mainNavigationScreen);
+                              // } else {
+                              //   Get.showSnackbar(
+                              //     const GetSnackBar(
+                              //       title: 'Login failed! Try again.',
+                              //     ),
+                              //   );
+                              // }
+
+
+
+                             //  if (response != null && response['status'] == 'true') {
+                             //   print(response);
+                             //    Get.toNamed(RouteNames.mainNavigationScreen);
+                             //    showSnackBarMessage(
+                             //        context, 'OTP sent to the email address');
+                             //  } else {
+                             //    showSnackBarMessage(
+                             //        context, 'OTP sent failed. Try again.', true);
+                             //  }
+                             //
+
+
+
+
+                         //     // String text = _emailETController.text;
+                         // print(arguments['email']);
+                         //      final result = await NetworkUtils().postMethod(
+                         //        'https://test.smartbiniyog.com/api/client-v1/submit-login',
+                         //        body: {
+                         //          'contact':arguments['email'].toString()
+                         //          'otp': _otpPinETController.text.trim(),
+                         //        },
                          //      );
                          //      Get.toNamed(RouteNames.mainNavigationScreen);
-                         //      // if (response) {
-                         //      //   Get.toNamed(RouteNames.mainNavigationScreen);
-                         //      // } else {
-                         //      //   Get.showSnackbar(
-                         //      //     const GetSnackBar(
-                         //      //       title: 'Login failed! Try again.',
-                         //      //     ),
-                         //      //   );
-                         //      // }
-                         //
-                         //
-                         //
-                         //     //  if (response != null && response['status'] == 'true') {
-                         //     //   print(response);
-                         //     //    Get.toNamed(RouteNames.mainNavigationScreen);
-                         //     //    showSnackBarMessage(
-                         //     //        context, 'OTP sent to the email address');
-                         //     //  } else {
-                         //     //    showSnackBarMessage(
-                         //     //        context, 'OTP sent failed. Try again.', true);
-                         //     //  }
-                         //     //
-                         //
-                         //
-                         //
-                         //
-                         // //     // String text = _emailETController.text;
-                         // // print(arguments['email']);
-                         // //      final result = await NetworkUtils().postMethod(
-                         // //        'https://test.smartbiniyog.com/api/client-v1/submit-login',
-                         // //        body: {
-                         // //          'contact':arguments['email'].toString()
-                         // //          'otp': _otpPinETController.text.trim(),
-                         // //        },
-                         // //      );
-                         // //      Get.toNamed(RouteNames.mainNavigationScreen);
-                         // // // print(result);
-                         // // //      if (result!= null && result['status'] == 'true') {
-                         // // //        Get.toNamed(RouteNames.mainNavigationScreen);
-                         // // //        showSnackBarMessage(
-                         // // //            context, 'Registration successful!');
-                         // // //      } else {
-                         // // //        showSnackBarMessage(context,
-                         // // //            'Registration Failed! Try again', true);
-                         // // //      }
+                         // // print(result);
+                         // //      if (result!= null && result['status'] == 'true') {
+                         // //        Get.toNamed(RouteNames.mainNavigationScreen);
+                         // //        showSnackBarMessage(
+                         // //            context, 'Registration successful!');
+                         // //      } else {
+                         // //        showSnackBarMessage(context,
+                         // //            'Registration Failed! Try again', true);
+                         // //      }
 
                             }
                           },

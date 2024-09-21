@@ -71,11 +71,7 @@ class _FixedTermScreenState extends State<FixedTermScreen> {
                           EdgeInsets.fromLTRB(
                               10, 0, 0, 0),
                           child: Text(
-                            // ProjectController
-                            //     .AllProjectDataModel
-                            //     .data?[index]
-                            //     .name ??
-                            'Unknown',
+                              '${e.name}',
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight:
@@ -94,12 +90,7 @@ class _FixedTermScreenState extends State<FixedTermScreen> {
                           child: Row(
                             children: [
                               Text(
-                                // ProjectController
-                                //     .AllProjectDataModel
-                                //     .data?[
-                                // index]
-                                //     .projectPrice ??
-                                'Unknown',
+                                "${e.projectPrice}",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight:
@@ -140,7 +131,7 @@ class _FixedTermScreenState extends State<FixedTermScreen> {
                                 width: 4,
                               ),
                               Text(
-                                "",
+                                "${e.returnMin}${"% -"} ${e.returnMax} ${"%"}",
                                 //'${ProjectController.AllProjectDataModel.data?[index].returnMin ?? ''}${"% -"} ${ProjectController.AllProjectDataModel.data?[index].returnMax ?? ''}${"%"}', // '18%--24%(ট 1,800-ট 2,200  )',
                                 style: TextStyle(
                                   fontSize: 15,
@@ -177,7 +168,7 @@ class _FixedTermScreenState extends State<FixedTermScreen> {
                                 width: 4,
                               ),
                               Text(
-                                '',
+                                '3 manths',
                                 style: TextStyle(
                                   fontSize: 15,
                                 ),

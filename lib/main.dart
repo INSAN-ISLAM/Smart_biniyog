@@ -37,10 +37,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      getPages: RouteDestinations.pages,
-     // initialRoute: RouteNames.dashBoard,
+     getPages: RouteDestinations.pages,
+      initialRoute: RouteNames.dashBoard,
 
-     home: ProjectDetailScreen(),       //
+
+
+    // home: DateDifferenceScreen(),       //
       //        DashBoardScreen(),
     );
   }

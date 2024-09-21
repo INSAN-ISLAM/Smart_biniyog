@@ -22,10 +22,10 @@ class _ProjectReviewDetailsState extends State<ProjectReviewDetails> {
 var id;
   @override
   Widget build(BuildContext context) {
-
-    final Map<String, String> arguments = Get.arguments;
-    id =arguments['id'];
-    print(arguments['id']);
+    //
+    // final Map<String, String> arguments = Get.arguments;
+    // id =arguments['id'];
+    // print(arguments['id']);
     return  Scaffold(
       appBar: AppBar(title:  Center(
         child: Text('Review Details'),),),
@@ -149,19 +149,19 @@ var id;
                                   Color: Colors.blueGrey,
                                   onTap: () async {
                                     if (_formKey.currentState!.validate()) {
-                                      print(' result:$id');
-                                      final result = await ProjectReviewDetailsController.ProjectReviews(
-                                        id.toString(),
-                                        _ratingETController.text.trim(),
-                                        _reviewETController.text.trim(),
-                                      );
+                                     // print(' result:$id');
+                                      // final result = await ProjectReviewDetailsController.ProjectReviews(
+                                      //   id.toString(),
+                                      //   _ratingETController.text.trim(),
+                                      //   _reviewETController.text.trim(),
+                                      // );
 
-                                      if (result != null && result['status'] == 'true') {
-                                        showSnackBarMessage(
-                                            context, 'OTP sent to the email address');
-                                      } else {
-                                        showSnackBarMessage(
-                                            context, 'OTP sent failed. Try again.', true);
+                                      // if (result != null && result['status'] == 'true') {
+                                      //   showSnackBarMessage(
+                                      //       context, 'OTP sent to the email address');
+                                      // } else {
+                                      //   showSnackBarMessage(
+                                      //       context, 'OTP sent failed. Try again.', true);
 
 
                                         //  //   //String text = _emailETController.text;
@@ -183,7 +183,7 @@ var id;
                                         //  //   //   showSnackBarMessage(context,
                                         //  //   //       'Registration Failed! Try again', true);
                                         //  //   // }
-                                      }
+                                    //  }
 
                                     }
                                   },

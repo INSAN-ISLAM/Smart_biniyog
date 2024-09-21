@@ -23,7 +23,7 @@ class Client {
   String? email;
   String? verifiedAt;
   String? phone;
-  String? address;
+  Null? address;
   String? nid;
   Null? nidF;
   Null? nidB;
@@ -39,8 +39,9 @@ class Client {
   String? referralStatus;
   String? createdAt;
   String? updatedAt;
-  Null? banking;
-  String? mfs;
+  Banking? banking;
+  Mfs? mfs;
+  Nominee? nominee;
   AllBalance? allBalance;
   Orders? orders;
 
@@ -68,6 +69,7 @@ class Client {
         this.updatedAt,
         this.banking,
         this.mfs,
+        this.nominee,
         this.allBalance,
         this.orders});
 
@@ -93,8 +95,11 @@ class Client {
     referralStatus = json['referral_status'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    banking = json['banking'];
-    mfs = json['mfs'];
+    banking =
+    json['banking'] != null ? new Banking.fromJson(json['banking']) : null;
+    mfs = json['mfs'] != null ? new Mfs.fromJson(json['mfs']) : null;
+    nominee =
+    json['nominee'] != null ? new Nominee.fromJson(json['nominee']) : null;
     allBalance = json['all_balance'] != null
         ? new AllBalance.fromJson(json['all_balance'])
         : null;
@@ -125,8 +130,15 @@ class Client {
     data['referral_status'] = this.referralStatus;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
-    data['banking'] = this.banking;
-    data['mfs'] = this.mfs;
+    if (this.banking != null) {
+      data['banking'] = this.banking!.toJson();
+    }
+    if (this.mfs != null) {
+      data['mfs'] = this.mfs!.toJson();
+    }
+    if (this.nominee != null) {
+      data['nominee'] = this.nominee!.toJson();
+    }
     if (this.allBalance != null) {
       data['all_balance'] = this.allBalance!.toJson();
     }
@@ -137,9 +149,81 @@ class Client {
   }
 }
 
+class Banking {
+  String? bankName;
+  String? branchName;
+  String? acName;
+  String? acNo;
+
+  Banking({this.bankName, this.branchName, this.acName, this.acNo});
+
+  Banking.fromJson(Map<String, dynamic> json) {
+    bankName = json['bank_name'];
+    branchName = json['branch_name'];
+    acName = json['ac_name'];
+    acNo = json['ac_no'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['bank_name'] = this.bankName;
+    data['branch_name'] = this.branchName;
+    data['ac_name'] = this.acName;
+    data['ac_no'] = this.acNo;
+    return data;
+  }
+}
+
+class Mfs {
+  String? mfsName;
+  String? mfsType;
+  String? mfsNumber;
+
+  Mfs({this.mfsName, this.mfsType, this.mfsNumber});
+
+  Mfs.fromJson(Map<String, dynamic> json) {
+    mfsName = json['mfs_name'];
+    mfsType = json['mfs_type'];
+    mfsNumber = json['mfs_number'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['mfs_name'] = this.mfsName;
+    data['mfs_type'] = this.mfsType;
+    data['mfs_number'] = this.mfsNumber;
+    return data;
+  }
+}
+
+class Nominee {
+  String? name;
+  String? phone;
+  String? nid;
+  String? relationship;
+
+  Nominee({this.name, this.phone, this.nid, this.relationship});
+
+  Nominee.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    phone = json['phone'];
+    nid = json['nid'];
+    relationship = json['relationship'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['phone'] = this.phone;
+    data['nid'] = this.nid;
+    data['relationship'] = this.relationship;
+    return data;
+  }
+}
+
 class AllBalance {
   int? sumOfPaymentAmount;
-  int? sumOfReferralAmount;
+  String? sumOfReferralAmount;
   int? sumOfProfitAmount;
   int? sumOfWithdrawalAmount;
   int? currentBalance;

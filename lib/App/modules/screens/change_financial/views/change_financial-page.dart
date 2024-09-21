@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smart_biniyog/App/modules/Widgets/AppElevatedButtonWidget.dart';
 import 'package:smart_biniyog/App/modules/Widgets/AppTextFieldWidget.dart';
 import 'package:smart_biniyog/App/modules/screens/change_financial/controller/change_financial.dart';
+import 'package:smart_biniyog/App/modules/screens/mbanking%20change/controller/m_controller.dart';
+import 'package:smart_biniyog/App/modules/utils/snackbar_message.dart';
 
 class ChangeFinancialScreen extends GetView<ChangeFinancialController> {
    ChangeFinancialScreen({Key? key}) : super(key: key);
@@ -18,7 +20,7 @@ class ChangeFinancialScreen extends GetView<ChangeFinancialController> {
   final TextEditingController _AccountNumlController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+   ChangeFinancialController changeFinancialController=Get.put(ChangeFinancialController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,17 +47,6 @@ class ChangeFinancialScreen extends GetView<ChangeFinancialController> {
 
                     const SizedBox(height: 12),
                     AppTextFieldWidget(
-                      controller: _BranchController,
-                      hintText: 'Branch Name',
-                      validator: (value) {
-                        if (value?.isEmpty ?? true) {
-                          return 'Please enter your address';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    AppTextFieldWidget(
                       controller: _AccountNameController,
                       hintText: 'Account Name',
                       validator: (value) {
@@ -65,7 +56,18 @@ class ChangeFinancialScreen extends GetView<ChangeFinancialController> {
                         return null;
                       },
                     ),
+                    const SizedBox(height: 12),
 
+                    AppTextFieldWidget(
+                      controller: _BranchController,
+                      hintText: 'Branch Name',
+                      validator: (value) {
+                        if (value?.isEmpty ?? true) {
+                          return 'Please enter your address';
+                        }
+                        return null;
+                      },
+                    ),
                     const SizedBox(height: 12),
                     AppTextFieldWidget(
                       controller: _AccountNumlController,
@@ -84,92 +86,70 @@ class ChangeFinancialScreen extends GetView<ChangeFinancialController> {
                     Container(
                       height: 48,
                       width: 358,
-                      child: AppElevatedButton(
-                        Color: Colors.green,
-                        onTap: () async {
-                          // personInfoController.profileUpdate();
-                          // if (_formKey.currentState!.validate()) {
-                          //
-                          //   Map <String,dynamic>data= {
-                          //     "name":  _nameController.text.trim(),
-                          // "email":   _EmailController.text.trim(),
-                          // "phone": _PhnNumController.text.trim(),
-                          // //"address": "123 Elm Street, Springfield",
-                          // "nid":    _DateBirthlController.text.trim(),
-                          // "tin":  _TINController.text.trim(),
-                          // //"image": "path/to/image.jpg",
-                          // "nid_f":_nid_frontPartlController.text.trim(),
-                          // "nid_b":     _nid_backlController.text.trim(),
-                          // //"gender":gen,
-                          // "client_type":_val.toString(),
-                          // };
-                          //   personInfoController.profileUpdate(data);
-                          //
-                          //
-                          //
-                          //
-                          //
-                          //   //  PersonInfoController.ProfileUpdate(
-                          //   //   _nameController.text.trim(),
-                          //   //   _EmailController.text.trim(),
-                          //   //   _PhnNumController.text.trim(),
-                          //   //   _DateBirthlController.text.trim(),
-                          //   //   _TINController.text.trim(),
-                          //   //   _nid_frontPartlController.text.trim(),
-                          //   //   _nid_backlController.text.trim(),
-                          //   //   _val.toString(),
-                          //   // );
-                          //
-                          //   // if (result != null && result['status'] == 'true') {
-                          //   //  print(result);
-                          //   //
-                          //   //   showSnackBarMessage(
-                          //   //       context, 'OTP sent to the email address');
-                          //   // } else {
-                          //   //   showSnackBarMessage(
-                          //   //       context, 'OTP sent failed. Try again.', true);
-                          //   //
-                          //   //
-                          //   //
-                          //   // }
-                          //
-                          //
-                          //
-                          //
-                          //
-                          //   // String text = _emailETController.text;
-                          //   // print(arguments['email']);
-                          //   //      final result = await NetworkUtils().postMethod(
-                          //   //        'https://test.smartbiniyog.com/api/client-v1/submit-login',
-                          //   //        body: {
-                          //   //          'contact':arguments['email'].toString(),
-                          //   //          'otp': _otpPinETController.text.trim(),
-                          //   //        },
-                          //   //      );
-                          //   //      Get.toNamed(RouteNames.mainNavigationScreen);
-                          //   // // print(result);
-                          //   // //      if (result!= null && result['status'] == 'true') {
-                          //   // //        Get.toNamed(RouteNames.mainNavigationScreen);
-                          //   // //        showSnackBarMessage(
-                          //   // //            context, 'Registration successful!');
-                          //   // //      } else {
-                          //   // //        showSnackBarMessage(context,
-                          //   // //            'Registration Failed! Try again', true);
-                          //        // }
-                          //
-                          // }
-                        },
-                        child: Center(
-                          child: Text(
-                            "Update",
-                            style: GoogleFonts.poppins(
-                              textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
+                      child: GetBuilder<ChangeFinancialController>(
+                        builder: (ChangeFinancialController) {
+                          return AppElevatedButton(
+                            Color: Colors.green,
+                            onTap: () async {
+                               // // Get.toNamed(RouteNames.phnEmailOtpScreen);
+                              //  print(_emailETController.text.trim());
+                                final result = await ChangeFinancialController.bankingInfoChange(
+                                 // _TrxIDETController.text.trim(),
+                                  _BankController.text.trim(),
+                                    _AccountNameController.text.trim(),
+
+                                     _BranchController.text.trim(),
+                                  _AccountNumlController.text.trim(),
+                                );
+
+                                if (result != null && result['status'] == 'true') {
+
+
+                                  showSnackBarMessage(
+                                      context, 'OTP sent to the email address');
+                                } else {
+                                  showSnackBarMessage(
+                                      context, 'OTP sent failed. Try again.', true);
+
+
+                               //  //   //String text = _emailETController.text;
+                               //  //
+                               //  //   // final result = await NetworkUtils().postMethod(
+                               //  //   //   'https://test.smartbiniyog.com/api/client-v1/send-otp',
+                               //  //   //   body: {
+                               //  //   //     'contact': _emailETController.text.trim(),
+                               //  //   //   },
+                               //  //   // );
+                               //  //   //
+                               //  //   // if (result != null && result['status'] == 'true') {
+                               //  //   //   Get.toNamed(RouteNames.phnEmailOtpScreen,
+                               //  //   //       arguments: {'email':_emailETController.text}
+                               //  //   //   );
+                               //  //   //   showSnackBarMessage(
+                               //  //   //       context, 'Registration successful!');
+                               //  //   // } else {
+                               //  //   //   showSnackBarMessage(context,
+                               //  //   //       'Registration Failed! Try again', true);
+                               //  //   // }
+                                 }
+
+
+
+
+                            },
+                            child: Center(
+                              child: Text(
+                                "Update",
+                                style: GoogleFonts.poppins(
+                                  textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
+                          );
+                        }
                       ),
                     ),
 

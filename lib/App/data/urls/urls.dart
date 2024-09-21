@@ -5,12 +5,16 @@ class Urls {
  static String categoryUrl = '$baseUrl/category?';
  static String allprojecturl = '$baseUrl/project';
  static String businesstypeurl = '$baseUrl/business-type?';
- static String updateprofileurl = '$baseUrl/update-profile/';
+ static String updateprofileurl = '$baseUrl/update-profile';
  static String shorttermprojecturl = '$baseUrl/project/1';
  static String longtermprojecturl = '$baseUrl/project/2';
+ static String  returntermprojecturl = '$baseUrl/project/3';
  static String fixedtermprojecturl = '$baseUrl/project/4';
  static String projectreviewurl = '$baseUrl/project/reviews';
  static String PersonInfowurl = '$baseUrl/user-info';
+ static String bankingInfoChangeurl = '$baseUrl/client-banking';
+ static String mbankingInfoChangeurl = '$baseUrl/client-mfs';
+ static String nomineeInfoChangeurl = '$baseUrl/update-nominee';
 
 
 

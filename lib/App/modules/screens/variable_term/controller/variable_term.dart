@@ -9,24 +9,24 @@ class VariableTermController extends GetxController{
 
   @override
   void onInit() {
-    getShortTermProcect();
+    getReturnTermProcect();
     super.onInit();
   }
 
-  bool shortProjectProgress = false;
- // ReturnModel ReturnProjectDataModel = ReturnModel();
+  bool returnProjectProgress = false;
+  ReturnModel ReturnProjectDataModel = ReturnModel();
 
 
-  Future<bool> getShortTermProcect() async {
-    shortProjectProgress = true;
+  Future<bool> getReturnTermProcect() async {
+    returnProjectProgress = true;
     update();
     final response = await NetworkUtils().getMethod(
-      Urls.shorttermprojecturl,
+      Urls.returntermprojecturl,
     );
-    print("short_response:$response");
-    shortProjectProgress = false;
+    print(" return:$response");
+    returnProjectProgress = false;
     if (response != null) {
-     // ReturnProjectDataModel = ReturnModel.fromJson(response);
+     ReturnProjectDataModel = ReturnModel.fromJson(response);
 
       update();
       return true;

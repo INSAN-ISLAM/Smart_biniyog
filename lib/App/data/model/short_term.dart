@@ -98,7 +98,9 @@ class Data {
   String? about;
   String? createdAt;
   String? updatedAt;
-  bool? check;
+  String? statusName;
+  double? duration;
+  int? inWaiting;
   List<String>? myBusinessType;
   Category? category;
   List<Reviews>? reviews;
@@ -124,7 +126,9 @@ class Data {
         this.about,
         this.createdAt,
         this.updatedAt,
-        this.check,
+        this.statusName,
+        this.duration,
+        this.inWaiting,
         this.myBusinessType,
         this.category,
         this.reviews});
@@ -150,7 +154,9 @@ class Data {
     about = json['about'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    check = json['check'];
+    statusName = json['status_name'];
+    duration = json['duration'];
+    inWaiting = json['in_waiting'];
     myBusinessType = json['my_business_type'].cast<String>();
     category = json['category'] != null
         ? new Category.fromJson(json['category'])
@@ -185,7 +191,9 @@ class Data {
     data['about'] = this.about;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
-    data['check'] = this.check;
+    data['status_name'] = this.statusName;
+    data['duration'] = this.duration;
+    data['in_waiting'] = this.inWaiting;
     data['my_business_type'] = this.myBusinessType;
     if (this.category != null) {
       data['category'] = this.category!.toJson();
@@ -292,19 +300,19 @@ class Reviews {
 
 class Client {
   int? id;
-  Null? name;
+  String? name;
   String? email;
   String? verifiedAt;
-  Null? phone;
-  Null? address;
-  Null? nid;
+  String? phone;
+  String? address;
+  String? nid;
   Null? nidF;
   Null? nidB;
-  Null? tin;
+  String? tin;
   String? balance;
   Null? image;
   Null? otp;
-  Null? gender;
+  String? gender;
   String? status;
   String? clientType;
   String? referralCode;

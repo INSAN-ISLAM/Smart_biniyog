@@ -5,6 +5,8 @@ import 'package:smart_biniyog/App/modules/Screens/about_page.dart';
 import 'package:smart_biniyog/App/modules/Screens/summary_page.dart';
 import 'package:smart_biniyog/App/modules/Screens/profit_simulation/views/profit_simu_page.dart';
 import 'package:smart_biniyog/App/modules/Widgets/AppElevatedButtonWidget.dart';
+import 'package:smart_biniyog/App/modules/screens/project_review/views/project_reviewlist_page.dart';
+import 'package:smart_biniyog/App/modules/screens/project_review/views/project_reviews.dart';
 
 class ProjectDetailScreen extends StatefulWidget {
   const ProjectDetailScreen({Key? key}) : super(key: key);
@@ -20,7 +22,7 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     _tabController.addListener(() {
       if (!_tabController.indexIsChanging) {
         setState(() {
@@ -48,6 +50,11 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
       });
 
     } else if (_selectedIndex == 2) {
+      setState(() {
+        _tabController.index=3;
+      });
+
+    } else if (_selectedIndex == 3) {
       // Action for About tab
       print("About tab action");
     }
@@ -98,6 +105,7 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
                     unselectedLabelColor: Colors.black,
                     isScrollable: true,
                     tabs: [
+                      Tab(text: 'Pr_reviews'),
                       Tab(text: 'Summary'),
                       Tab(text: 'About'),
                       Tab(text: 'Profit Simulation'),
@@ -109,6 +117,7 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
                   child: TabBarView(
                     controller: _tabController,
                     children: [
+                      Center(child: ProjectReviews()),
                       Center(child: SummaryScreen()),
                       Center(child: AboutSreen()),
                       Center(child: ProfitSimuScreen()),
@@ -127,7 +136,7 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
               child: Center(
                 child: Text(
                   _selectedIndex == 0 ? "Next" :
-                  _selectedIndex == 1 ? "Next" : "Add to Cart",
+                  _selectedIndex == 3 ? "Next" : "Add to Cart",
                   style: GoogleFonts.poppins(
                     textStyle: const TextStyle(
                       color: Color(0xFFFFFFFF),

@@ -1,14 +1,17 @@
+import 'dart:convert';
+
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:smart_biniyog/App/data/model/personInfo.dart';
 import 'package:smart_biniyog/App/data/service/network_caller.dart';
 import 'package:smart_biniyog/App/data/urls/urls.dart';
 
-class NomineeController extends GetxController{
+class MobileBankingController extends GetxController{
+
 
 
   @override
   void onInit() {
-    GetNomineeInfoModel();
+    GetPersonInfoModel();
     super.onInit();
   }
 
@@ -17,14 +20,14 @@ class NomineeController extends GetxController{
   PersonInfoModel personInfoDataModel = PersonInfoModel();
 
 
-  Future<bool> GetNomineeInfoModel() async {
+  Future<bool> GetPersonInfoModel() async {
     getpersonInfoProgress = true;
     update();
     final response = await NetworkUtils().getMethod(
       Urls.PersonInfowurl,
 
     );
-print('user:$response');
+//print('user:$response');
     getpersonInfoProgress = false;
     if (response != null) {
       //final Map<String, dynamic> jsonData = json.decode(response.body);
@@ -32,7 +35,7 @@ print('user:$response');
 
       //client = Client.fromJson(jsonData['client']);
 
-      update();
+        update();
 
 
       return true;
@@ -41,8 +44,6 @@ print('user:$response');
       return false;
     }
   }
-
-
 
 
 

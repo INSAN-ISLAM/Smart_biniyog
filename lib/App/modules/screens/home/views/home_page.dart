@@ -40,7 +40,7 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 4,
+                        height: 16,
                       ),
                       ListTile(
                         title: Row(
@@ -324,34 +324,29 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: GetBuilder<HomeController>(builder: (HomeController) {
-                      return Expanded(
-                        child: HomeController.getCategoryProgress
-                            ? const Center(
-                                child: CircularProgressIndicator(),
-                              )
-                            : RefreshIndicator(
-                                onRefresh: () async {
-                                  HomeController.getCategory();
-                                },
-                                child: Row(
-                                  children:
-                                      HomeController.CategoryDataModel.data!
-                                          .map((e) => RemarkCategoryWidget(
-                                                RemarkName: e.name.toString(),
-                                                icon: FontAwesomeIcons.map,
-                                                onTap: () {
-                                                  Get.toNamed(
-                                                      RouteNames.projectScreen);
-                                                },
-                                              ))
-                                          .toList(),
-                                ),
-                              ),
-                      );
-                    })),
+                child: GetBuilder<HomeController>(builder: (HomeController) {
+                  return HomeController.getCategoryProgress
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : RefreshIndicator(
+                          onRefresh: () async {
+                            HomeController.getCategory();
+                          },
+                          child: Row(
+                            children:
+                                HomeController.categoryDataModel.data!
+                                    .map((e) => RemarkCategoryWidget(
+                                          RemarkName: e.name.toString(),
+                                          icon: FontAwesomeIcons.map,
+                                          onTap: () {
+                                            Get.toNamed(RouteNames.projectScreen);
+                                          },
+                                        ))
+                                    .toList(),
+                          ),
+                        );
+                }),
               ),
               RemarksTitleWidget(
                 remarksName: 'Popular Project',
@@ -372,178 +367,183 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                         HomeController.getCategory();
                       },
                       child: Column(
-                        children: HomeController.ProjectTypeDataModel.data!
-                            .map((e) => Row(
+                        children: HomeController.projectTypeDataModel.data!
+                            .map((e) => Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              flex: 65,
-                              child: InkWell(
-                                onTap: () {
-                                  Get.toNamed(RouteNames.projectDetailsScreen);
-                                },
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                      child: Text(e.name.toString()),
-                                    ),
-                                    SizedBox(
-                                      height: 4,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                      child: Text(
-                                        '20,000 BDT/Unit',
-                                        style: TextStyle(
+                              Expanded(
+                                flex: 65,
+                                child: InkWell(
+                                  onTap: () {
+                                    Get.toNamed(RouteNames.projectDetailsScreen);
+                                  },
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                        child: Text(e.name.toString(), style: TextStyle(
                                             fontSize: 15,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black),
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.black),),
                                       ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                            flex: 40,
-                                            child: Column(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                  EdgeInsets.fromLTRB(8, 0, 0, 0),
-                                                  child: Row(
-                                                    children: [
-                                                      CircleAvatar(
-                                                        radius: 10,
-                                                        backgroundColor:
-                                                        Colors.deepOrange,
-                                                        child: Center(
-                                                          child: Icon(
-                                                            Icons.add_alert_sharp,
-                                                            color: Colors.white,
-                                                            size: 10,
+                                      SizedBox(
+                                        height: 4,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                        child: Text(
+                                          '20,000 BDT/Unit',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                              flex: 40,
+                                              child: Column(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                    EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                                    child: Row(
+                                                      children: [
+                                                        CircleAvatar(
+                                                          radius: 10,
+                                                          backgroundColor:
+                                                          Colors.deepOrange,
+                                                          child: Center(
+                                                            child: Icon(
+                                                              Icons.add_alert_sharp,
+                                                              color: Colors.white,
+                                                              size: 10,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 4,
-                                                      ),
-                                                      Text('9%-1%Return'),
-                                                    ],
+                                                        SizedBox(
+                                                          width: 4,
+                                                        ),
+                                                        Text('9%-1%Return'),
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  height: 4,
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                  EdgeInsets.fromLTRB(8, 0, 0, 0),
-                                                  child: Row(
-                                                    children: [
-                                                      CircleAvatar(
-                                                        radius: 10,
-                                                        backgroundColor:
-                                                        Colors.deepOrange,
-                                                        child: Center(
-                                                          child: Icon(
-                                                            Icons.add_alert_sharp,
-                                                            color: Colors.white,
-                                                            size: 10,
+                                                  SizedBox(
+                                                    height: 4,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                    EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                                    child: Row(
+                                                      children: [
+                                                        CircleAvatar(
+                                                          radius: 10,
+                                                          backgroundColor:
+                                                          Colors.deepOrange,
+                                                          child: Center(
+                                                            child: Icon(
+                                                              Icons.add_alert_sharp,
+                                                              color: Colors.white,
+                                                              size: 10,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 4,
-                                                      ),
-                                                      Text('Bogura'),
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
-                                            )),
-                                        Expanded(
-                                            flex: 40,
-                                            child: Column(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                  EdgeInsets.fromLTRB(8, 0, 0, 0),
-                                                  child: Row(
-                                                    children: [
-                                                      CircleAvatar(
-                                                        radius: 10,
-                                                        backgroundColor:
-                                                        Colors.deepOrange,
-                                                        child: Center(
-                                                          child: Icon(
-                                                            Icons.add_alert_sharp,
-                                                            color: Colors.white,
-                                                            size: 10,
+                                                        SizedBox(
+                                                          width: 4,
+                                                        ),
+                                                        Text('Bogura'),
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              )),
+                                          Expanded(
+                                              flex: 40,
+                                              child: Column(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                    EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                                    child: Row(
+                                                      children: [
+                                                        CircleAvatar(
+                                                          radius: 10,
+                                                          backgroundColor:
+                                                          Colors.deepOrange,
+                                                          child: Center(
+                                                            child: Icon(
+                                                              Icons.add_alert_sharp,
+                                                              color: Colors.white,
+                                                              size: 10,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 4,
-                                                      ),
-                                                      Text('5 Month'),
-                                                    ],
+                                                        SizedBox(
+                                                          width: 4,
+                                                        ),
+                                                        Text('5 Month'),
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  height: 4,
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                  EdgeInsets.fromLTRB(8, 0, 0, 0),
-                                                  child: Row(
-                                                    children: [
-                                                      CircleAvatar(
-                                                        radius: 10,
-                                                        backgroundColor:
-                                                        Colors.deepOrange,
-                                                        child: Center(
-                                                          child: Icon(
-                                                            Icons.add_alert_sharp,
-                                                            color: Colors.white,
-                                                            size: 10,
+                                                  SizedBox(
+                                                    height: 4,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                    EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                                    child: Row(
+                                                      children: [
+                                                        CircleAvatar(
+                                                          radius: 10,
+                                                          backgroundColor:
+                                                          Colors.deepOrange,
+                                                          child: Center(
+                                                            child: Icon(
+                                                              Icons.add_alert_sharp,
+                                                              color: Colors.white,
+                                                              size: 10,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 4,
-                                                      ),
-                                                      Text('Variable'),
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
-                                            )),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 25,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    //color: Colors.pink,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Image.asset(
-                                    'assets/images/Agriculture.jpg',
-                                    fit: BoxFit.fill,
-                                    height: 100,
+                                                        SizedBox(
+                                                          width: 4,
+                                                        ),
+                                                        Text('Variable'),
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              )),
+                                        ],
+                                      )
+                                    ],
                                   ),
                                 ),
                               ),
-                            ),
+                              Expanded(
+                                flex: 25,
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.asset(
+                                      'assets/images/Agriculture.jpg',
+                                      fit: BoxFit.fill,
+                                      height: 100,
+                                    ),
+                                  ),
+                                ),
+                              ),
+
                           ],
                         ),
+                            ),
 
 
 
@@ -554,6 +554,189 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                       ),
                     );
                   })),
+
+             // Row(
+             //      crossAxisAlignment: CrossAxisAlignment.start,
+             //      mainAxisAlignment: MainAxisAlignment.start,
+             //      children: [
+             //        Expanded(
+             //          flex: 65,
+             //          child: InkWell(
+             //            onTap: () {
+             //              Get.toNamed(RouteNames.projectDetailsScreen);
+             //            },
+             //            child: Column(
+             //              mainAxisAlignment: MainAxisAlignment.start,
+             //              crossAxisAlignment: CrossAxisAlignment.start,
+             //              children: [
+             //                Padding(
+             //                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+             //                  child: Text('jg'),
+             //                ),
+             //                SizedBox(
+             //                  height: 4,
+             //                ),
+             //                Padding(
+             //                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+             //                  child: Text(
+             //                    '20,000 BDT/Unit',
+             //                    style: TextStyle(
+             //                        fontSize: 15,
+             //                        fontWeight: FontWeight.w600,
+             //                        color: Colors.black),
+             //                  ),
+             //                ),
+             //                Row(
+             //                  children: [
+             //                    Expanded(
+             //                        flex: 40,
+             //                        child: Column(
+             //                          children: [
+             //                            Padding(
+             //                              padding:
+             //                              EdgeInsets.fromLTRB(8, 0, 0, 0),
+             //                              child: Row(
+             //                                children: [
+             //                                  CircleAvatar(
+             //                                    radius: 10,
+             //                                    backgroundColor:
+             //                                    Colors.deepOrange,
+             //                                    child: Center(
+             //                                      child: Icon(
+             //                                        Icons.add_alert_sharp,
+             //                                        color: Colors.white,
+             //                                        size: 10,
+             //                                      ),
+             //                                    ),
+             //                                  ),
+             //                                  SizedBox(
+             //                                    width: 4,
+             //                                  ),
+             //                                  Text('9%-1%Return'),
+             //                                ],
+             //                              ),
+             //                            ),
+             //                            SizedBox(
+             //                              height: 4,
+             //                            ),
+             //                            Padding(
+             //                              padding:
+             //                              EdgeInsets.fromLTRB(8, 0, 0, 0),
+             //                              child: Row(
+             //                                children: [
+             //                                  CircleAvatar(
+             //                                    radius: 10,
+             //                                    backgroundColor:
+             //                                    Colors.deepOrange,
+             //                                    child: Center(
+             //                                      child: Icon(
+             //                                        Icons.add_alert_sharp,
+             //                                        color: Colors.white,
+             //                                        size: 10,
+             //                                      ),
+             //                                    ),
+             //                                  ),
+             //                                  SizedBox(
+             //                                    width: 4,
+             //                                  ),
+             //                                  Text('Bogura'),
+             //                                ],
+             //                              ),
+             //                            )
+             //                          ],
+             //                        )),
+             //                    Expanded(
+             //                        flex: 40,
+             //                        child: Column(
+             //                          children: [
+             //                            Padding(
+             //                              padding:
+             //                              EdgeInsets.fromLTRB(8, 0, 0, 0),
+             //                              child: Row(
+             //                                children: [
+             //                                  CircleAvatar(
+             //                                    radius: 10,
+             //                                    backgroundColor:
+             //                                    Colors.deepOrange,
+             //                                    child: Center(
+             //                                      child: Icon(
+             //                                        Icons.add_alert_sharp,
+             //                                        color: Colors.white,
+             //                                        size: 10,
+             //                                      ),
+             //                                    ),
+             //                                  ),
+             //                                  SizedBox(
+             //                                    width: 4,
+             //                                  ),
+             //                                  Text('5 Month'),
+             //                                ],
+             //                              ),
+             //                            ),
+             //                            SizedBox(
+             //                              height: 4,
+             //                            ),
+             //                            Padding(
+             //                              padding:
+             //                              EdgeInsets.fromLTRB(8, 0, 0, 0),
+             //                              child: Row(
+             //                                children: [
+             //                                  CircleAvatar(
+             //                                    radius: 10,
+             //                                    backgroundColor:
+             //                                    Colors.deepOrange,
+             //                                    child: Center(
+             //                                      child: Icon(
+             //                                        Icons.add_alert_sharp,
+             //                                        color: Colors.white,
+             //                                        size: 10,
+             //                                      ),
+             //                                    ),
+             //                                  ),
+             //                                  SizedBox(
+             //                                    width: 4,
+             //                                  ),
+             //                                  Text('Variable'),
+             //                                ],
+             //                              ),
+             //                            )
+             //                          ],
+             //                        )),
+             //                  ],
+             //                )
+             //              ],
+             //            ),
+             //          ),
+             //        ),
+             //        Expanded(
+             //          flex: 25,
+             //          child: Padding(
+             //            padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+             //            child: Container(
+             //              decoration: BoxDecoration(
+             //                //color: Colors.pink,
+             //                  borderRadius: BorderRadius.circular(10)),
+             //              child: Image.asset(
+             //                'assets/images/Agriculture.jpg',
+             //                fit: BoxFit.fill,
+             //                height: 100,
+             //              ),
+             //            ),
+             //          ),
+             //        ),
+             //      ],
+             //    ),
+
+
+
+
+
+
+
+
+
+
+
 
 
               SizedBox(
@@ -577,6 +760,7 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                           // Navigator.push(
                           //     context,
                           //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
+                          Get.toNamed(RouteNames.bestProject);
                         },
                         BadgRemarkName: '44,00BDT/unit',
                         child: Image.asset(
@@ -587,6 +771,7 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                       RemarkBestProjrctWidget(
                         RemarkName: 'Goat farm',
                         onTap: () {
+                          Get.toNamed(RouteNames.bestProject);
                           // Navigator.push(
                           //     context,
                           //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
@@ -599,7 +784,24 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                       ),
                       RemarkBestProjrctWidget(
                         RemarkName: 'Goat farm',
+
                         onTap: () {
+                          Get.toNamed(RouteNames.bestProject);
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
+                        },
+                        BadgRemarkName: '44,00BDT/unit',
+                        child: Image.asset(
+                          'assets/images/Cowmarket.jpeg',
+                          //fit: BoxFit.fill,
+                        ),
+                      ),
+                      RemarkBestProjrctWidget(
+                        RemarkName: 'Goat farm',
+
+                        onTap: () {
+                          Get.toNamed(RouteNames.bestProject);
                           // Navigator.push(
                           //     context,
                           //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
@@ -613,6 +815,7 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                       RemarkBestProjrctWidget(
                         RemarkName: 'Goat farm',
                         onTap: () {
+                          Get.toNamed(RouteNames.bestProject);
                           // Navigator.push(
                           //     context,
                           //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
@@ -626,27 +829,18 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                       RemarkBestProjrctWidget(
                         RemarkName: 'Goat farm',
                         onTap: () {
+                          Get.toNamed(RouteNames.bestProject);
                           // Navigator.push(
                           //     context,
                           //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
                         },
                         BadgRemarkName: '44,00BDT/unit',
-                        child: Image.asset(
-                          'assets/images/Cowmarket.jpeg',
-                          //fit: BoxFit.fill,
-                        ),
-                      ),
-                      RemarkBestProjrctWidget(
-                        RemarkName: 'Goat farm',
-                        onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
-                        },
-                        BadgRemarkName: '44,00BDT/unit',
-                        child: Image.asset(
-                          'assets/images/Cowmarket.jpeg',
-                          //fit: BoxFit.fill,
+                        child: ClipRRect(
+                          borderRadius:BorderRadius.circular(10),
+                          child: Image.asset(
+                            'assets/images/Cowmarket.jpeg',
+                            //fit: BoxFit.fill
+                          ),
                         ),
                       ),
                     ],
@@ -656,8 +850,8 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
               SizedBox(
                 height: 5,
               ),
-              RemarksTitleWidget(
-                remarksName: 'Project review ',
+              RemarksTitlebWidget(
+                remarksName: 'Blog ',
                 onTapSeeAll: () {
                   Get.toNamed(RouteNames.projectReviewList);
                 },
@@ -673,7 +867,7 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                     HomeController.getReviewProcect();
                   },
                   child: Column(
-                    children: HomeController.AllProjectDataModel.data!
+                    children: HomeController.allProjectDataModel.data!
                         .map((e) =>  Card(
 
                           elevation: 15,
@@ -702,13 +896,13 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                                         padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
                                         child: Container(
                                           width: double.infinity,
-                                          decoration: BoxDecoration(
-                                            //color: Colors.pink,
-                                              borderRadius: BorderRadius.circular(10)),
-                                          child: Image.asset(
-                                            'assets/images/Agriculture.jpg',
-                                            fit: BoxFit.fill,
-                                            //height: 100,
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(10),
+                                            child: Image.asset(
+                                              'assets/images/Agriculture.jpg',
+                                              fit: BoxFit.fill,
+                                              //height: 100,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -735,8 +929,11 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                                             Padding(
                                               padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                                               child: Text(
-                                                '20,000 BDT/Unit',
+                                                maxLines: 1,
+                                                'bangladesh Interntional expo Targets the fundamental skills required for literacy: meaning of words, recognition of sounds, and recognition of spelling',
                                                 style: TextStyle(
+
+                                                    overflow: TextOverflow.ellipsis,
                                                     fontSize: 15,
                                                     fontWeight: FontWeight.w600,
                                                     color: Colors.black),
@@ -779,6 +976,87 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                   ),
                 );
               }),
+              // Container(
+              //     height: 270,
+              //     width: double.infinity,
+              //     decoration: BoxDecoration(
+              //       color: Colors.white,
+              //       borderRadius: BorderRadius.all(Radius.circular(10)),
+              //     ),
+              //     child: Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         Expanded(
+              //           flex: 55,
+              //           child: Padding(
+              //             padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+              //             child: Container(
+              //               width: double.infinity,
+              //               decoration: BoxDecoration(
+              //                 //color: Colors.pink,
+              //                   borderRadius: BorderRadius.circular(10)),
+              //               child: Image.asset(
+              //                 'assets/images/Agriculture.jpg',
+              //                 fit: BoxFit.fill,
+              //                 //height: 100,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //         Expanded(
+              //             flex: 40,
+              //             child: Column(
+              //               mainAxisAlignment: MainAxisAlignment.start,
+              //               crossAxisAlignment: CrossAxisAlignment.start,
+              //               children: [
+              //                 Padding(
+              //                   padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+              //                   child: Text(
+              //                     'Paddy Harvest-12',
+              //                     style: TextStyle(
+              //                         fontSize: 15,
+              //                         fontWeight: FontWeight.w600,
+              //                         color: Colors.black),
+              //                   ),
+              //                 ),
+              //                 SizedBox(
+              //                   height: 4,
+              //                 ),
+              //                 Padding(
+              //                   padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+              //                   child: Text(
+              //                     '20,000 BDT/Unit',
+              //                     style: TextStyle(
+              //                         fontSize: 15,
+              //                         fontWeight: FontWeight.w600,
+              //                         color: Colors.black),
+              //                   ),
+              //                 ),
+              //                 Padding(
+              //                   padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+              //                   child: Row(
+              //                     crossAxisAlignment:
+              //                     CrossAxisAlignment.end,
+              //                     mainAxisAlignment:
+              //                     MainAxisAlignment.end,
+              //                     children: [
+              //                       Padding(
+              //                         padding: const EdgeInsets.all(8.0),
+              //                         child: Text(
+              //                           'Read More ',// + e.id.toString(),
+              //                           style: TextStyle(
+              //                               fontSize: 15,
+              //                               fontWeight: FontWeight.w600,
+              //                               color: Colors.black),
+              //                         ),
+              //                       ),
+              //                     ],
+              //                   ),
+              //                 ),
+              //               ],
+              //             )),
+              //       ],
+              //     )),
 
               SizedBox(
                 height: 8,
@@ -875,6 +1153,41 @@ class RemarksTitleWidget extends StatelessWidget {
           child: Text(
             'See all',
             style: TextStyle(color: Colors.green),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+
+class RemarksTitlebWidget extends StatelessWidget {
+  RemarksTitlebWidget({
+    Key? key,
+    required this.remarksName,
+    required this.onTapSeeAll,
+  }) : super(key: key);
+
+  final String remarksName;
+  final VoidCallback onTapSeeAll;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+          child: Text(
+            remarksName,
+            style: TitleTextStyle.copyWith(
+                fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
+          ),
+        ),
+        TextButton(
+          onPressed: onTapSeeAll,
+          child: Text(
+           "",
           ),
         )
       ],

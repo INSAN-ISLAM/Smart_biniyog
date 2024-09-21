@@ -39,7 +39,7 @@ class LogInScreenController extends  GetxController{
     return await NetworkUtils().authPostMethod(Urls.verifyEmailPhn,              //final result =
         body: {
            'contact': email,
-         // 'referral_code': rcode,
+
     });
 
    loginInProgress = false;
@@ -58,6 +58,11 @@ class LogInScreenController extends  GetxController{
       Urls.businesstypeurl,
     );
     LogInImageProgress = false;
+    
+    print('log:$response');
+
+
+
     if (response != null) {
       LogInDataModel = LogInImageModel.fromJson(response);
       update();

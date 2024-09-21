@@ -27,7 +27,7 @@ class AllProjectController extends GetxController{
     allProjectProgress = false;
     if (response != null) {
       AllProjectDataModel = AllProjectModel.fromJson(response);
-      print(AllProjectDataModel);
+      //print(AllProjectDataModel);
       update();
       return true;
     } else {

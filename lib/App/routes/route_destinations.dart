@@ -28,6 +28,8 @@ import 'package:smart_biniyog/App/modules/screens/change_nominee/binding/change_
 import 'package:smart_biniyog/App/modules/screens/change_nominee/views/change_nominee.dart';
 import 'package:smart_biniyog/App/modules/screens/change_person_Info/binding/changeper_binding.dart';
 import 'package:smart_biniyog/App/modules/screens/change_person_Info/views/change_info.dart';
+import 'package:smart_biniyog/App/modules/screens/mbanking%20change/binding/m_binding.dart';
+import 'package:smart_biniyog/App/modules/screens/mbanking%20change/views/mbanking-change.dart';
 import 'package:smart_biniyog/App/modules/screens/person_info_sub/bindding/person_info_bindding.dart';
 import 'package:smart_biniyog/App/modules/screens/person_info_sub/views/personal_Info_page.dart';
 import 'package:smart_biniyog/App/modules/screens/profile/binding/profile_binding.dart';
@@ -49,7 +51,7 @@ class RouteDestinations{
     GetPage(name: RouteNames.logInScreen, page:()=>  LogInSreen(),binding: LogInBinding()),
     GetPage(name: RouteNames.homeScreen, page:()=> MyHomePageScreen(),binding: HomeBinding()),
     GetPage(name: RouteNames.phnEmailOtpScreen, page:()=>  PhnEmailOtpVerifyScreen(),binding: PhnEmailOtpBinding()),
-    GetPage(name: RouteNames.mainNavigationScreen, page:()=> const MainBottomNavBar(),binding: NavigaionBinding()),
+    GetPage(name: RouteNames.mainNavigationScreen, page:()=>  MainBottomNavBar(),binding: NavigaionBinding()),
     GetPage(name: RouteNames.myCardScreen, page:()=> MyCardScreen(),binding: MyCardBinding()),
     GetPage(name: RouteNames.personInfoScreen, page:()=> const PersonInfoScreen(),binding: PersonInfoBinding()),
     GetPage(name: RouteNames.profitSimoScreen, page:()=> const ProfitSimuScreen(),binding: ProfitSimuBinding()),
@@ -65,6 +67,7 @@ class RouteDestinations{
     GetPage(name: RouteNames.changeNomineeInfo, page:()=>  ChangeNomineeScreen(),binding: ChangeNomineeBinding()),
     GetPage(name: RouteNames.allProject, page:()=>   AllProjectScreen(),binding: AllProjectBinding()),
     GetPage(name: RouteNames.shortTermProject, page:()=>   ShortTermScreen(),binding: ShortTermBinding()),
+    GetPage(name: RouteNames.changeMobileBankingInfo, page:()=>   MobileBankingChange(),binding: ChangeBankingBinding()),
 
 
 

@@ -42,8 +42,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               children: [
                 Center(
                   child: Container(
-                    height: 400,
-                    width: 400,
+                    height: 250,
+                    width: 250,
                     child: Image.asset(
                       'assets/images/smart_biniyog.png',
                       fit: BoxFit.fill,

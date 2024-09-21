@@ -1,4 +1,4 @@
- class ProjectTypeModel {
+class ProjectTypeModel {
   List<Data>? data;
 
   ProjectTypeModel({this.data});

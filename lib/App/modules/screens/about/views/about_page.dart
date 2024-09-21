@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({Key? key}) : super(key: key);
@@ -10,6 +11,9 @@ class AboutScreen extends StatefulWidget {
 class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar:AppBar(),
+      body: Center(child: Text("About us")),
+    );
   }
 }

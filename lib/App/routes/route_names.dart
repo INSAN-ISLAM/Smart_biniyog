@@ -20,5 +20,7 @@ class RouteNames{
   static const String changeNomineeInfo = '/change-nominee-info-screen';
   static const String allProject = '/all-project-info-screen';
   static const String shortTermProject = '/all-project-info-screen';
+  static const String changeMobileBankingInfo = '/change-MobileBanking-info-screen';
+
 
 }

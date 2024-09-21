@@ -11,7 +11,7 @@ import 'package:smart_biniyog/App/data/urls/urls.dart';
 class HomeController extends GetxController {
 
   bool getCategoryProgress = false;
-  CategoryModel CategoryDataModel = CategoryModel();
+  CategoryModel categoryDataModel = CategoryModel();
 
 
   Future<bool> getCategory() async {
@@ -22,7 +22,7 @@ class HomeController extends GetxController {
     );
     getCategoryProgress = false;
     if (response != null) {
-      CategoryDataModel = CategoryModel.fromJson(response);
+      categoryDataModel = CategoryModel.fromJson(response);
       update();
       return true;
     } else {
@@ -34,7 +34,7 @@ class HomeController extends GetxController {
 
 
   bool ProjectTypeProgress = false;
-  ProjectTypeModel ProjectTypeDataModel = ProjectTypeModel();
+  ProjectTypeModel projectTypeDataModel = ProjectTypeModel();
 
 
   Future<bool> getProjectType() async {
@@ -46,7 +46,7 @@ class HomeController extends GetxController {
     //print("response:$response");
     ProjectTypeProgress = false;
     if (response != null) {
-      ProjectTypeDataModel = ProjectTypeModel.fromJson(response);
+      projectTypeDataModel = ProjectTypeModel.fromJson(response);
       update();
       return true;
     } else {
@@ -57,7 +57,7 @@ class HomeController extends GetxController {
 
 
   bool reviewProjectProgress = false;
-  AllProjectModel AllProjectDataModel = AllProjectModel();
+  AllProjectModel allProjectDataModel = AllProjectModel();
 
 
   Future<bool> getReviewProcect() async {
@@ -69,7 +69,7 @@ class HomeController extends GetxController {
    // print("All response:$response");
     reviewProjectProgress = false;
     if (response != null) {
-      AllProjectDataModel = AllProjectModel.fromJson(response);
+      allProjectDataModel = AllProjectModel.fromJson(response);
       update();
       return true;
     } else {

@@ -41,11 +41,7 @@ class AllProjectScreen extends GetView<AllProjectController> {
                             BorderRadius.circular(
                                 10)),
                         child: Image.network(
-                          // ProjectController
-                          //     .AllProjectDataModel
-                          //     .data?[index]
-                          //     .image ??
-                            'Unknown'
+                          '',//' ${e.image}',
                         ),
                       ),
                     ),
@@ -68,11 +64,7 @@ class AllProjectScreen extends GetView<AllProjectController> {
                             EdgeInsets.fromLTRB(
                                 10, 0, 0, 0),
                             child: Text(
-                              // ProjectController
-                              //     .AllProjectDataModel
-                              //     .data?[index]
-                              //     .name ??
-                              'Unknown',
+                            ' ${e.name}',
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight:
@@ -91,12 +83,7 @@ class AllProjectScreen extends GetView<AllProjectController> {
                             child: Row(
                               children: [
                                 Text(
-                                  // ProjectController
-                                  //     .AllProjectDataModel
-                                  //     .data?[
-                                  // index]
-                                  //     .projectPrice ??
-                                  'Unknown',
+                                  ' ${e.projectPrice}',
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight:
@@ -137,7 +124,7 @@ class AllProjectScreen extends GetView<AllProjectController> {
                                   width: 4,
                                 ),
                                 Text(
-                                  "",
+                                  "${e.returnMin}${"% -"} ${e.returnMax} ${"%"}",
                                   //'${ProjectController.AllProjectDataModel.data?[index].returnMin ?? ''}${"% -"} ${ProjectController.AllProjectDataModel.data?[index].returnMax ?? ''}${"%"}', // '18%--24%(ট 1,800-ট 2,200  )',
                                   style: TextStyle(
                                     fontSize: 15,
@@ -174,7 +161,7 @@ class AllProjectScreen extends GetView<AllProjectController> {
                                   width: 4,
                                 ),
                                 Text(
-                                  '',
+                                  '3 manths',
                                   style: TextStyle(
                                     fontSize: 15,
                                   ),

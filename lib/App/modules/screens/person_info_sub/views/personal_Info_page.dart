@@ -25,6 +25,8 @@ class _PersonInfoScreenState extends State<PersonInfoScreen> {
   final TextEditingController _EmailController = TextEditingController();
   final TextEditingController _PhnNumController = TextEditingController();
   final TextEditingController _DateBirthlController = TextEditingController();
+  final TextEditingController _nidlController = TextEditingController();
+  final TextEditingController _imagelController = TextEditingController();
   final TextEditingController _nid_backlController = TextEditingController();
   final TextEditingController _nid_frontPartlController = TextEditingController();
   final TextEditingController _TINController = TextEditingController();
@@ -38,6 +40,7 @@ class _PersonInfoScreenState extends State<PersonInfoScreen> {
       firstDate: DateTime(1900), // Earliest selectable date
       lastDate: DateTime(2100), // Latest selectable date
     );
+
 
     if (picked != null) {
       setState(() {
@@ -148,6 +151,17 @@ class _PersonInfoScreenState extends State<PersonInfoScreen> {
             const SizedBox(height: 12),
 
             AppTextFieldWidget(
+              controller: _nidlController,
+              hintText: 'nid',
+              validator: (value) {
+                if (value?.isEmpty ?? true) {
+                  return 'Please enter your WhatsApp number';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 12),
+            AppTextFieldWidget(
               controller: _TINController,
               hintText: 'TIN',
               validator: (value) {
@@ -157,29 +171,39 @@ class _PersonInfoScreenState extends State<PersonInfoScreen> {
                 return null;
               },
             ),
-            const SizedBox(height: 12),
-            AppTextFieldWidget(
-              controller: _nid_frontPartlController,
-              hintText: 'nid_frontPart',
-              validator: (value) {
-                if (value?.isEmpty ?? true) {
-                  return 'Please enter your WhatsApp number';
-                }
-                return null;
-              },
-            ),
-
-            const SizedBox(height: 12),
-            AppTextFieldWidget(
-              controller: _nid_backlController,
-              hintText: 'nid_backPart',
-              validator: (value) {
-                if (value?.isEmpty ?? true) {
-                  return 'Please enter your WhatsApp number';
-                }
-                return null;
-              },
-            ),
+            // const SizedBox(height: 12),
+            // AppTextFieldWidget(
+            //   controller: _imagelController,
+            //   hintText: 'image',
+            //   validator: (value) {
+            //     if (value?.isEmpty ?? true) {
+            //       return 'Please enter your WhatsApp number';
+            //     }
+            //     return null;
+            //   },
+            // ),
+            // const SizedBox(height: 12),
+            // AppTextFieldWidget(
+            //   controller: _nid_frontPartlController,
+            //   hintText: 'nid_frontPart',
+            //   validator: (value) {
+            //     if (value?.isEmpty ?? true) {
+            //       return 'Please enter your WhatsApp number';
+            //     }
+            //     return null;
+            //   },
+            // ),
+            // const SizedBox(height: 12),
+            // AppTextFieldWidget(
+            //   controller: _nid_backlController,
+            //   hintText: 'nid_backPart',
+            //   validator: (value) {
+            //     if (value?.isEmpty ?? true) {
+            //       return 'Please enter your WhatsApp number';
+            //     }
+            //     return null;
+            //   },
+            // ),
 
             const SizedBox(height: 12),
             Text('Gender',style: TextStyle(fontSize: 15),),
@@ -243,18 +267,20 @@ class _PersonInfoScreenState extends State<PersonInfoScreen> {
 
 
             GetBuilder<PersonInfoController>(
-              builder: (_) {
+              builder: (PersonInfoController) {
                 return Container(
                   height: 48,
                   width: 358,
                   child: AppElevatedButton(
                     Color: Colors.green,
                     onTap: () async {
-                      personInfoController.profileUpdate();
+
+
+                      if (_formKey.currentState!.validate()) {
 
 
 
-                      //   Map <String,dynamic>body1= {
+                      //   Map <String,dynamic>data= {
                       //     "name":  _nameController.text.trim(),
                       // "email":   _EmailController.text.trim(),
                       // "phone": _PhnNumController.text.trim(),
@@ -267,76 +293,37 @@ class _PersonInfoScreenState extends State<PersonInfoScreen> {
                       // "gender":'gen',
                       // "client_type":_val.toString(),
                       // };
-                      // if (_formKey.currentState!.validate()) {
-                      //
-                      // //   Map <String,dynamic>body1= {
-                      // //     "name":  _nameController.text.trim(),
-                      // // "email":   _EmailController.text.trim(),
-                      // // "phone": _PhnNumController.text.trim(),
-                      // // "address": "123 Elm Street, Springfield",
-                      // // "nid":    _DateBirthlController.text.trim(),
-                      // // "tin":  _TINController.text.trim(),
-                      // // "image": "path/to/image.jpg",
-                      // // "nid_f":_nid_frontPartlController.text.trim(),
-                      // // "nid_b":     _nid_backlController.text.trim(),
-                      // // "gender":'gen',
-                      // // "client_type":_val.toString(),
-                      // // };
-                      //  // personInfoController.profileUpdate(data);
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //   //  PersonInfoController.ProfileUpdate(
-                      //   //   _nameController.text.trim(),
-                      //   //   _EmailController.text.trim(),
-                      //   //   _PhnNumController.text.trim(),
-                      //   //   _DateBirthlController.text.trim(),
-                      //   //   _TINController.text.trim(),
-                      //   //   _nid_frontPartlController.text.trim(),
-                      //   //   _nid_backlController.text.trim(),
-                      //   //   _val.toString(),
-                      //   // );
-                      //
-                      //   // if (result != null && result['status'] == 'true') {
-                      //   //  print(result);
-                      //   //
-                      //   //   showSnackBarMessage(
-                      //   //       context, 'OTP sent to the email address');
-                      //   // } else {
-                      //   //   showSnackBarMessage(
-                      //   //       context, 'OTP sent failed. Try again.', true);
-                      //   //
-                      //   //
-                      //   //
-                      //   // }
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //   // String text = _emailETController.text;
-                      //   // print(arguments['email']);
-                      //   //      final result = await NetworkUtils().postMethod(
-                      //   //        'https://test.smartbiniyog.com/api/client-v1/submit-login',
-                      //   //        body: {
-                      //   //          'contact':arguments['email'].toString(),
-                      //   //          'otp': _otpPinETController.text.trim(),
-                      //   //        },
-                      //   //      );
-                      //   //      Get.toNamed(RouteNames.mainNavigationScreen);
-                      //   // // print(result);
-                      //   // //      if (result!= null && result['status'] == 'true') {
-                      //   // //        Get.toNamed(RouteNames.mainNavigationScreen);
-                      //   // //        showSnackBarMessage(
-                      //   // //            context, 'Registration successful!');
-                      //   // //      } else {
-                      //   // //        showSnackBarMessage(context,
-                      //   // //            'Registration Failed! Try again', true);
-                      //        // }
-                      //
-                      // }
+                       // personInfoController.profileUpdate(data);
+
+
+                         PersonInfoController.profileInfoSubmit(
+                           _val.toString(),
+                          _nameController.text.trim(),
+                           _PhnNumController.text.trim(),
+                          _EmailController.text.trim(),
+                           _DateBirthlController.text.trim(),
+                           _nidlController.text.trim(),
+                          _TINController.text.trim(),
+                          // _imagelController.text.trim(),
+                          //_nid_frontPartlController.text.trim(),
+                          //_nid_backlController.text.trim(),
+                             _val1.toString(),
+                        );
+
+                        // if (result != null && result['status'] == 'true') {
+                        //  print(result);
+                        //
+                        //   showSnackBarMessage(
+                        //       context, 'OTP sent to the email address');
+                        // } else {
+                        //   showSnackBarMessage(
+                        //       context, 'OTP sent failed. Try again.', true);
+                        //
+                        //
+                        //
+                        // }
+
+                      }
                     },
                     child: Center(
                       child: Text(
