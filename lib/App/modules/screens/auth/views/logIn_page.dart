@@ -22,35 +22,25 @@ class LogInSreen extends GetView<LogInScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Form(
         key: _formKey,
         child: Column(
           children: [
-
-
-            GetBuilder<LogInScreenController>(builder: (LogInScreenController) {
-              return LogInScreenController.LogInImageProgress
-                  ? const Center(
-                child: CircularProgressIndicator(),
-              )
-                  : RefreshIndicator(
-                onRefresh: () async {
-                  LogInScreenController.getLogInImage();
-                },
-                child: Container(
-                      width: double.infinity,
-                      child: Center(
-                        child: Image.asset(
-                          'assets/images/demo_pic.jpg',
-                          height: 350,
-                          //width: double.infinity,
-                          fit: BoxFit.fill,
+            GetBuilder<LogInScreenController>(builder: (loginScreenController) {
+              return  Container(
+                        width: double.infinity,
+                        child: Center(
+                          child: Image.asset(
+                            'assets/images/demo_pic.jpg',
+                            height: 350,
+                            //width: double.infinity,
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                      ),
 
 
-                ),
-              );
+                  );
             }),
 
             // Container(
@@ -85,16 +75,40 @@ class LogInSreen extends GetView<LogInScreenController> {
                       ),
                     ],
                   )),
-                  AppTextFieldWidget(
-                    controller: _emailETController,
-                    hintText: 'Enter Phone Num or Email',
-                    validator: (value) {
-                      if (value?.isEmpty ?? true) {
-                        return 'Enter your valid Phn Num Or email';
-                      }
-                      return null;
-                    },
+
+                  SizedBox(height: 20.0),
+
+                  Container(
+                    height: 50.0,
+                    child: TextField(
+                      controller: _emailETController,
+                      cursorColor: primaryColor,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(top: 6.0,left: 10.0),
+                        hintText: 'Enter phone number or email',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey), // Gray color border
+                          borderRadius: BorderRadius.all(Radius.circular(8)), // Border radius
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey), // Gray color border on focus
+                          borderRadius: BorderRadius.all(Radius.circular(10)), // Border radius on focus
+                        ),
+                      ),
+                    ),
                   ),
+
+
+                  // AppTextFieldWidget(
+                  //   controller: _emailETController,
+                  //   hintText: 'Enter Phone Num or Email',
+                  //   validator: (value) {
+                  //     if (value?.isEmpty ?? true) {
+                  //       return 'Enter your valid Phn Num Or email';
+                  //     }
+                  //     return null;
+                  //   },
+                  // ),
 
                   SizedBox(
                     height: 20,
@@ -102,9 +116,8 @@ class LogInSreen extends GetView<LogInScreenController> {
                   GetBuilder<LogInScreenController>(
                       builder: (LogInScreenController) {
                     return Container(
-                      height: 55,
-                      width: 358,
-                      color: Colors.white,
+                      height: 50,
+                      width: Get.width,
                       child: AppElevatedButton(
                         Color: primaryColor,
                         onTap: () async {
@@ -116,7 +129,7 @@ class LogInSreen extends GetView<LogInScreenController> {
                               _emailETController.text.trim(),
 
                             );
-                   print(result);
+                              print(result);
                             if (result != null && result['status'] == 'true') {
 
                               Get.toNamed(RouteNames.phnEmailOtpScreen,
@@ -185,14 +198,12 @@ class LogInSreen extends GetView<LogInScreenController> {
                         child: Center(
                           child: Text(
                             "Continue",
-                            style: GoogleFonts.poppins(
-                              textStyle: const TextStyle(
+                            style: TextStyle(
                                 color: Color(0xFFFFFFFF),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                letterSpacing: 1.5,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
-                            ),
+
                           ),
                         ),
                       ),
@@ -200,7 +211,7 @@ class LogInSreen extends GetView<LogInScreenController> {
                   }),
 
                   SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
                   Center(
                       child: TextButton(
@@ -213,7 +224,9 @@ class LogInSreen extends GetView<LogInScreenController> {
                           },
                           child: Text(
                             "Skip for now",
-                            style: SubTitleTextStyle,
+                            style: TextStyle(
+                              color: Color(0xff38b579)
+                            ),
                           ))),
 //
                 ],

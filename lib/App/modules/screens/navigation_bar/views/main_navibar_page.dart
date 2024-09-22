@@ -49,13 +49,12 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
       bottomNavigationBar: GetBuilder<NavigatinController>(
         builder: (controller) {
           return BottomNavigationBar(
-            selectedItemColor: Colors.green,
+            selectedItemColor:Color(0xff38b579),
             unselectedItemColor: Colors.black38,
             backgroundColor: Colors.white,
             showUnselectedLabels: true,
             onTap: (value) {
              controller.changeIndex(value);
-
             },
             elevation: 4,
             currentIndex:controller.selectedIndex,
@@ -72,19 +71,6 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
             ],
           );
         }
-      ),
-
-      floatingActionButtonLocation:FloatingActionButtonLocation.endFloat,
-
-      floatingActionButton: FloatingActionButton(
-        elevation: 10,
-        child: Icon(Icons.phone) ,
-        backgroundColor: Colors.green,
-        onPressed: (){
-
-
-
-        },
       ),
 
 

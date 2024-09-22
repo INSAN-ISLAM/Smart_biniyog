@@ -1,27 +1,6 @@
+
+
 class CategoryModel {
-  List<Data>? data;
-
-  CategoryModel({this.data});
-
-  CategoryModel.fromJson(Map<String, dynamic> json) {
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Data {
   int? id;
   String? icon;
   String? name;
@@ -30,7 +9,7 @@ class Data {
   String? updatedAt;
   bool? check;
 
-  Data(
+  CategoryModel(
       {this.id,
         this.icon,
         this.name,
@@ -39,7 +18,7 @@ class Data {
         this.updatedAt,
         this.check});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  CategoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     icon = json['icon'];
     name = json['name'];

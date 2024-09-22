@@ -1,6 +1,10 @@
 
 
 
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:smart_biniyog/App/data/model/catagory_model.dart';
 import 'package:smart_biniyog/App/data/model/allproject_nodel.dart';
@@ -8,10 +12,40 @@ import 'package:smart_biniyog/App/data/model/project_type_model.dart';
 import 'package:smart_biniyog/App/data/service/network_caller.dart';
 import 'package:smart_biniyog/App/data/urls/urls.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
 
+  late TabController tabController;
   bool getCategoryProgress = false;
-  CategoryModel categoryDataModel = CategoryModel();
+  List<CategoryModel> categories = [];
+
+  RxInt currentIndex = 0.obs;
+
+  @override
+  void onInit() {
+    tabController = TabController(length: 5, vsync: this);
+    tabController.addListener(() {
+
+
+      if (!tabController.indexIsChanging && currentIndex.value != tabController.index) {
+        // Ensure we only make the API call when the tab change is finalized
+        currentIndex.value = tabController.index;
+        print(currentIndex.value);
+       // fetchProjects(tabController.index);  // Call API when the index changes
+      }
+
+    });
+
+    getCategory();
+    getProjectType();
+    getReviewProcect();
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    tabController.dispose();
+    super.onClose();
+  }
 
 
   Future<bool> getCategory() async {
@@ -22,8 +56,15 @@ class HomeController extends GetxController {
     );
     getCategoryProgress = false;
     if (response != null) {
-      categoryDataModel = CategoryModel.fromJson(response);
+
+      var data=response['data'];
+
+      for (int i=0;i<data.length;i++) {
+        categories.add(CategoryModel.fromJson(data[i]));
+      }
+      print(categories);
       update();
+
       return true;
     } else {
       update();
@@ -79,14 +120,6 @@ class HomeController extends GetxController {
   }
 
 
-
-  @override
-  void onInit() {
-    getCategory();
-    getProjectType();
-    getReviewProcect();
-    super.onInit();
-  }
   }
 
 

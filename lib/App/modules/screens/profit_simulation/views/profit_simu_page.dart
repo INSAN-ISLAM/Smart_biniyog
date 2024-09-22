@@ -40,8 +40,6 @@ class ProfitSimuScreen extends GetView<ProfitSimuController> {
                           ),
                         ),
                       ),
-
-
                     ]
                 ),
               ),
