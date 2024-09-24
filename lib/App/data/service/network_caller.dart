@@ -3,9 +3,46 @@ import 'dart:developer';
 
 
 import 'package:http/http.dart' as http;
+import 'package:smart_biniyog/App/constant/base_url.dart';
 import 'package:smart_biniyog/App/data/service/data_saver.dart';
 
 class NetworkUtils {
+
+  Future<http.Response> getProjectsByBusinessType()async{
+    String token="53|pRq1MiXNh0Ja8pHjWhYfj37CJ4b7MZSXr08NWTwCead8a176";
+
+    String url=api_base_url+"api/client-v1/project_list";
+
+   Map<String,String> headers= {
+      "Content-Type": "application/json",
+    'Authorization': 'Bearer $token'
+    };
+
+   http.Response response= await http.get(Uri.parse(url),headers: headers);
+   return response;
+
+  }
+
+
+  Future<http.Response> getAllSliderImages()async{
+    String token="53|pRq1MiXNh0Ja8pHjWhYfj37CJ4b7MZSXr08NWTwCead8a176";
+
+    String url=api_base_url+"api/client-v1/slider/";
+
+    Map<String,String> headers= {
+      "Content-Type": "application/json",
+      'Authorization': 'Bearer $token'
+    };
+
+    http.Response response= await http.get(Uri.parse(url),headers: headers);
+    return response;
+
+
+
+  }
+
+
+
   /// Get request
   Future<dynamic> getMethod(String url) async {
     String token="53|pRq1MiXNh0Ja8pHjWhYfj37CJ4b7MZSXr08NWTwCead8a176";
@@ -20,13 +57,7 @@ class NetworkUtils {
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
       }
-      //else if (response.statusCode == 401) {
-      // if (onUnAuthorize != null) {
-      //   onUnAuthorize();
-      // } else {
-      //   //moveToLogin();
-      // }
-      //}
+
       else {
         log("Something went wrong");
       }
@@ -46,21 +77,6 @@ class NetworkUtils {
       "Content-Type": "application/json",
       'Authorization': 'Bearer $token',
     };
-
-    // Map<String,dynamic> body1={
-    //   "name": "insan islam",
-    //   "email": "abc@gmail.com",
-    //   "phone": "+1234567890",
-    //   "address": "123 Elm Street, Springfield",
-    //   "nid": "123456789",
-    //   "tin": "987654321",
-    //   "image": "path/to/image.jpg",
-    //   "nid_f": "path/to/nid_front.jpg",
-    //   "nid_b": "path/to/nid_back.jpg",
-    //   "gender":"male",
-    //   "client_type":1
-    //
-    // };
 
     http.Response response=await http.post(Uri.parse(url),headers: headers,body: json.encode(body1));
     return response;

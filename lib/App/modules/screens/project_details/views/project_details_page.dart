@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:smart_biniyog/App/modules/Screens/about_page.dart';
 import 'package:smart_biniyog/App/modules/Screens/summary_page.dart';
 import 'package:smart_biniyog/App/modules/Screens/profit_simulation/views/profit_simu_page.dart';
@@ -27,7 +26,8 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
       if (!_tabController.indexIsChanging) {
         setState(() {
           _selectedIndex = _tabController.index;
-        });
+        }
+        );
       }
     });
   }
@@ -38,25 +38,14 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
     super.dispose();
   }
 
+  // Method to handle button press
   void _onButtonPressed() {
-    if (_selectedIndex == 0) {
-      setState(() {
-        _tabController.index=1;
-      });
-
-    } else if (_selectedIndex == 1) {
-      setState(() {
-        _tabController.index=2;
-      });
-
-    } else if (_selectedIndex == 2) {
-      setState(() {
-        _tabController.index=3;
-      });
-
-    } else if (_selectedIndex == 3) {
-      // Action for About tab
-      print("About tab action");
+    if (_selectedIndex < _tabController.length - 1) {
+      // If not the last tab, go to the next tab
+      _tabController.animateTo(_selectedIndex + 1);
+    } else {
+      // Handle Add to Cart functionality here
+      print("Add to Cart clicked");
     }
   }
 
@@ -64,19 +53,17 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            'Project Details',
-          ),
+        leading: Icon(Icons.arrow_back_ios, color: Colors.white),
+        backgroundColor: Color(0xff38b579),
+        title: Text(
+          'Project Details',
+          style: TextStyle(color: Colors.white),
         ),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart))
-        ],
       ),
       body: Column(
         children: [
           Expanded(
-            flex: 30,
+            flex: 27,
             child: Row(
               children: [
                 Container(
@@ -100,16 +87,15 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
                   color: Colors.black12,
                   child: TabBar(
                     controller: _tabController,
-                    indicatorColor: Colors.teal,
-                    labelColor: Colors.teal,
+                    indicatorColor: Color(0xff38b579),
+                    labelColor: Color(0xff38b579),
                     unselectedLabelColor: Colors.black,
                     isScrollable: true,
                     tabs: [
-                      Tab(text: 'Pr_reviews'),
-                      Tab(text: 'Summary'),
+                      Tab(text: 'Project Reviews'),
                       Tab(text: 'About'),
+                      Tab(text: 'Summary'),
                       Tab(text: 'Profit Simulation'),
-
                     ],
                   ),
                 ),
@@ -118,10 +104,9 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
                     controller: _tabController,
                     children: [
                       Center(child: ProjectReviews()),
-                      Center(child: SummaryScreen()),
                       Center(child: AboutSreen()),
+                      Center(child: SummaryScreen()),
                       Center(child: ProfitSimuScreen()),
-
                     ],
                   ),
                 ),
@@ -135,8 +120,9 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
               onTap: _onButtonPressed,
               child: Center(
                 child: Text(
-                  _selectedIndex == 0 ? "Next" :
-                  _selectedIndex == 3 ? "Next" : "Add to Cart",
+                  _selectedIndex == _tabController.length - 1 // Check if it's the last tab
+                      ? "Add to Cart" // Show "Add to Cart" for the last tab
+                      : "Next", // Show "Next" for other tabs
                   style: GoogleFonts.poppins(
                     textStyle: const TextStyle(
                       color: Color(0xFFFFFFFF),

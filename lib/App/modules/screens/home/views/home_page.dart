@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:smart_biniyog/App/Constant/Colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:smart_biniyog/App/constant/base_url.dart';
+import 'package:smart_biniyog/App/data/model/project_model.dart';
 import 'package:smart_biniyog/App/modules/Screens/home/controller/home_controller.dart';
 import 'package:smart_biniyog/App/modules/Widgets/RemarkBestProjectWidget.dart';
 import 'package:smart_biniyog/App/modules/Widgets/RemarkCategoryWidget.dart';
@@ -89,41 +91,52 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                     children: [
                       CarouselSlider(
                         options: CarouselOptions(
-                            height: 178.0,
-                            viewportFraction: 1,
-                            autoPlayInterval: Duration(seconds: 2),
-                            autoPlay: true,
-                            autoPlayCurve: Curves.linear,
-                            onPageChanged: (index, _) {
-                              _currentCarouselIndex.value = index;
-                            }),
-                        items: [1, 2, 3, 4, 5].map((i) {
+                          height: 178.0,
+                          viewportFraction: 1,
+                          autoPlayInterval: Duration(seconds: 3),
+                          autoPlay: true,
+                          autoPlayCurve: Curves.linear,
+                          onPageChanged: (index, _) {
+                            _currentCarouselIndex.value = index;
+                          },
+                        ),
+                        items: homeController.sliderImages.map((i) {
                           return Builder(
                             builder: (BuildContext context) {
                               return Padding(
                                 padding: const EdgeInsets.all(10.0),
-                                child: Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        color: primaryColor),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      'text $i',
-                                      style: TextStyle(fontSize: 16.0),
-                                    )),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.network(
+                                    api_base_url + i,
+                                    fit: BoxFit.cover,
+                                    // Show a container while the image is loading
+                                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                      if (loadingProgress == null) {
+                                        return child; // Image has finished loading, return the actual image
+                                      } else {
+                                        return Container(
+                                          width: double.infinity,
+                                          height: 178.0, // Match the carousel height
+                                          color: Colors.black.withOpacity(0.3), // Placeholder background color
+                                        );
+                                      }
+                                    },
+                                  ),
+                                ),
                               );
                             },
                           );
                         }).toList(),
                       ),
+
                       ValueListenableBuilder(
                           valueListenable: _currentCarouselIndex,
                           builder: (context, currentValue, _) {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                for (int i = 0; i < 5; i++)
+                                for (int i = 0; i < homeController.sliderImages.length; i++)
                                   Padding(
                                     padding: const EdgeInsets.all(2.0),
                                     child: Container(
@@ -325,412 +338,112 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                     }),
               ),
 
-              // SingleChildScrollView(
-              //   scrollDirection: Axis.horizontal,
-              //
-              //
-              //   child: GetBuilder<HomeController>(builder: (HomeController) {
-              //     return HomeController.getCategoryProgress
-              //         ? const Center(
-              //             child: CircularProgressIndicator(),
-              //           )
-              //         : RefreshIndicator(
-              //             onRefresh: () async {
-              //               HomeController.getCategory();
-              //             },
-              //             child: Row(
-              //               children: HomeController.categoryDataModel.data!
-              //                   .map((e) => RemarkCategoryWidget(
-              //                         RemarkName: e.name.toString(),
-              //                         icon: FontAwesomeIcons.map,
-              //                         onTap: () {
-              //                           Get.toNamed(RouteNames.projectScreen);
-              //                         },
-              //                       ))
-              //                   .toList(),
-              //             ),
-              //           );
-              //   }),
-              // ),
-              RemarksTitleWidget(
-                remarksName: 'Popular Project',
-                onTapSeeAll: () {
-                  Get.toNamed(RouteNames.projectScreen);
-                },
-              ),
+           SizedBox(
+            height: 10,
+          ),
 
-              Padding(
-                  padding: EdgeInsets.all(2.0),
-                  child: GetBuilder<HomeController>(builder: (HomeController) {
-                    return HomeController.getCategoryProgress
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : RefreshIndicator(
-                            onRefresh: () async {
-                              HomeController.getCategory();
-                            },
-                            child: Column(
-                              children:
-                                  HomeController.projectTypeDataModel.data!
-                                      .map(
-                                        (e) => Padding(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 10),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Expanded(
-                                                flex: 65,
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    Get.toNamed(RouteNames
-                                                        .projectDetailsScreen);
-                                                  },
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                10, 0, 0, 0),
-                                                        child: Text(
-                                                          e.name.toString(),
-                                                          style: TextStyle(
-                                                              fontSize: 15,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                              color:
-                                                                  Colors.black),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 4,
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                10, 0, 0, 0),
-                                                        child: Text(
-                                                          '20,000 BDT/Unit',
-                                                          style: TextStyle(
-                                                              fontSize: 15,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                              color:
-                                                                  Colors.black),
-                                                        ),
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Expanded(
-                                                              flex: 40,
-                                                              child: Column(
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsets
-                                                                        .fromLTRB(
-                                                                            8,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        CircleAvatar(
-                                                                          radius:
-                                                                              10,
-                                                                          backgroundColor:
-                                                                              Colors.deepOrange,
-                                                                          child:
-                                                                              Center(
-                                                                            child:
-                                                                                Icon(
-                                                                              Icons.add_alert_sharp,
-                                                                              color: Colors.white,
-                                                                              size: 10,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width:
-                                                                              4,
-                                                                        ),
-                                                                        Text(
-                                                                            '9%-1%Return'),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 4,
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsets
-                                                                        .fromLTRB(
-                                                                            8,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        CircleAvatar(
-                                                                          radius:
-                                                                              10,
-                                                                          backgroundColor:
-                                                                              Colors.deepOrange,
-                                                                          child:
-                                                                              Center(
-                                                                            child:
-                                                                                Icon(
-                                                                              Icons.add_alert_sharp,
-                                                                              color: Colors.white,
-                                                                              size: 10,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width:
-                                                                              4,
-                                                                        ),
-                                                                        Text(
-                                                                            'Bogura'),
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                ],
-                                                              )),
-                                                          Expanded(
-                                                              flex: 40,
-                                                              child: Column(
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsets
-                                                                        .fromLTRB(
-                                                                            8,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        CircleAvatar(
-                                                                          radius:
-                                                                              10,
-                                                                          backgroundColor:
-                                                                              Colors.deepOrange,
-                                                                          child:
-                                                                              Center(
-                                                                            child:
-                                                                                Icon(
-                                                                              Icons.add_alert_sharp,
-                                                                              color: Colors.white,
-                                                                              size: 10,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width:
-                                                                              4,
-                                                                        ),
-                                                                        Text(
-                                                                            '5 Month'),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 4,
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsets
-                                                                        .fromLTRB(
-                                                                            8,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        CircleAvatar(
-                                                                          radius:
-                                                                              10,
-                                                                          backgroundColor:
-                                                                              Colors.deepOrange,
-                                                                          child:
-                                                                              Center(
-                                                                            child:
-                                                                                Icon(
-                                                                              Icons.add_alert_sharp,
-                                                                              color: Colors.white,
-                                                                              size: 10,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width:
-                                                                              4,
-                                                                        ),
-                                                                        Text(
-                                                                            'Variable'),
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                ],
-                                                              )),
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              Expanded(
-                                                flex: 25,
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.fromLTRB(
-                                                          0, 0, 5, 0),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    child: Image.asset(
-                                                      'assets/images/Agriculture.jpg',
-                                                      fit: BoxFit.fill,
-                                                      height: 100,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      )
-                                      .toList(),
-                            ),
-                          );
-                  })),
-
-
-              SizedBox(
-                height: 5,
-              ),
-              RemarksTitleWidget(
-                remarksName: 'Our Best Project',
-                onTapSeeAll: () {
-                  Get.toNamed(RouteNames.bestProject);
-                },
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      RemarkBestProjrctWidget(
-                        RemarkName: 'Goat farm',
-                        onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
-                          Get.toNamed(RouteNames.bestProject);
-                        },
-                        BadgRemarkName: '44,00BDT/unit',
-                        child: Image.asset(
-                          'assets/images/Cowmarket.jpeg',
-                          //fit: BoxFit.fill,
-                        ),
-                      ),
-                      RemarkBestProjrctWidget(
-                        RemarkName: 'Goat farm',
-                        onTap: () {
-                          Get.toNamed(RouteNames.bestProject);
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
-                        },
-                        BadgRemarkName: '44,00BDT/unit',
-                        child: Image.asset(
-                          'assets/images/Agriculture.jpg',
-                          //fit: BoxFit.fill,
-                        ),
-                      ),
-                      RemarkBestProjrctWidget(
-                        RemarkName: 'Goat farm',
-                        onTap: () {
-                          Get.toNamed(RouteNames.bestProject);
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
-                        },
-                        BadgRemarkName: '44,00BDT/unit',
-                        child: Image.asset(
-                          'assets/images/Cowmarket.jpeg',
-                          //fit: BoxFit.fill,
-                        ),
-                      ),
-                      RemarkBestProjrctWidget(
-                        RemarkName: 'Goat farm',
-                        onTap: () {
-                          Get.toNamed(RouteNames.bestProject);
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
-                        },
-                        BadgRemarkName: '44,00BDT/unit',
-                        child: Image.asset(
-                          'assets/images/Cowmarket.jpeg',
-                          //fit: BoxFit.fill,
-                        ),
-                      ),
-                      RemarkBestProjrctWidget(
-                        RemarkName: 'Goat farm',
-                        onTap: () {
-                          Get.toNamed(RouteNames.bestProject);
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
-                        },
-                        BadgRemarkName: '44,00BDT/unit',
-                        child: Image.asset(
-                          'assets/images/Cowmarket.jpeg',
-                          //fit: BoxFit.fill,
-                        ),
-                      ),
-                      RemarkBestProjrctWidget(
-                        RemarkName: 'Goat farm',
-                        onTap: () {
-                          Get.toNamed(RouteNames.bestProject);
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(builder: (context) => ProjectPageScreen()));
-                        },
-                        BadgRemarkName: '44,00BDT/unit',
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            'assets/images/Cowmarket.jpeg',
-                            //fit: BoxFit.fill
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+      homeController.projects.isEmpty? SizedBox():   Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: ListView.builder(
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,  // Ensures the ListView doesn't take infinite height
+          physics: NeverScrollableScrollPhysics(), // Prevents independent scrolling
+          itemCount: homeController.projects.length,
+          itemBuilder: (context, outerIndex) {
+            ProjectModel project = homeController.projects[outerIndex];
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(project.projectTypeName!,style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xff38b579))),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Text('See All',style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal,color: Color(0xff38b579))),
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
+                ListView.builder(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true, // Ensures the inner ListView has proper height
+                  physics: NeverScrollableScrollPhysics(), // Prevents inner scrolling
+                  itemCount: project.projects!.length==3?3:project.projects!.length==2?2:1,
+                  itemBuilder: (context, innerIndex) {
+                    Projects _project = project.projects![innerIndex];
+                    return Container(
+                      margin: const EdgeInsets.symmetric(vertical: 7), // Adds spacing between items
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex:4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start, // Aligns text to the left
+                              children: [
+                                Text(_project.name!,style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.black.withOpacity(0.6))),
+                                Text('৳ '+_project.projectPrice!+'/Unit',style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal,color: Colors.black.withOpacity(0.6))),
+                                 Row(children: [
+                                   Icon(Icons.timelapse_rounded,size:13.0,color:Colors.black.withOpacity(0.6)),
+                                   SizedBox(width: 2.0),
+                                   Text(_project.duration!,style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal,color: Colors.black.withOpacity(0.6))),
+                                 ]),
+
+                                Row(children: [
+                                  Icon(Icons.category,size:13.0,color:Colors.black.withOpacity(0.6)),
+                                  SizedBox(width: 2.0),
+                                  Text(_project.categoryName!,style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal,color: Colors.black.withOpacity(0.6))),
+                                ])
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10.0),
+                                child: Image.network(api_base_url + _project.image!,height: 90.0,fit: BoxFit.cover)), // For network images
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(height: 20.0)
+              ],
+            );
+          },
+        ),
+      ),
+
+
+
+
+
+      // ListView.builder(
+              //     itemCount: 2,
+              //     itemBuilder: (context,index){
+              //       ProjectModel project=homeController.projects[0];
+              //   return Container(
+              //     child: Row(
+              //       children: [
+              //         Expanded(child: Column(
+              //           children: [
+              //             Text(project.projects![index].name!),
+              //           ]
+              //         )),
+              //
+              //         Expanded(child: Image.asset(api_base_url+project.projects![index].image!))
+              //       ]
+              //     ),
+              //   );
+              // }),
 
               Padding(
                 padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                 child: Text(
                   'Read Blog',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black.withOpacity(0.6)),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xff38b579)),
                 ),
               ),
               SizedBox(

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 class SummaryScreen extends StatefulWidget {
@@ -15,340 +15,78 @@ class _SummaryScreenState extends State<SummaryScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0,left: 10.0,right: 10.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.black.withOpacity(0.8),
+                ),
                 height: 40,
-                color: Colors.black,
                 child: Center(
-                    child: Text(
-                  'Paddy Harvest-12',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 2,
+                  child: Text(
+                    'Paddy Harvest-12',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 2,
+                    ),
                   ),
-                ))),
-            SizedBox(
-              height: 5,
+                ),
+              ),
             ),
-
+            SizedBox(height: 5),
             Padding(
-              padding: const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 5.0,top: 5.0),
-              child: Row(
+              padding: const EdgeInsets.all(10.0),
+              child: Table(
+                border: TableBorder.all(color: Colors.grey),
                 children: [
-                  Expanded(child: Center(
-                    child: Text(
-                      'Business Type :',
-                      style: TextStyle(
-                        // color: Colors.green,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )),
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        'Trading',
-                        style: TextStyle(
-                          // color: Colors.green,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-
-
-                ]
+                  _buildTableRow('Business Type', 'Trading'),
+                  _buildTableRow('Investment Time', '3 Days'),
+                  _buildTableRow('Investment Goal', '120000'),
+                  _buildTableRow('Raise', '120000'),
+                  _buildTableRow('In Waiting', '120000'),
+                  _buildTableRow('Project Duration', '120000'),
+                  _buildTableRow('Min Investment', '120000'),
+                  _buildTableRow('ROI', '120000'),
+                  _buildTableRow('Project Status', '120000'),
+                ],
               ),
             ),
-
-            Divider(
-              color: Colors.grey,
-              thickness: 1,
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 5.0,top: 5.0),
-              child: Row(
-                  children: [
-                    Expanded(child: Center(
-                      child: Text(
-                        'Investment Time :',
-                        style: TextStyle(
-                          // color: Colors.green,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          '3 Days',
-                          style: TextStyle(
-                            // color: Colors.green,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-
-
-                  ]
-              ),
-            ),
-
-            Divider(
-              color: Colors.grey,
-              thickness: 1,
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 5.0,top: 5.0),
-              child: Row(
-                  children: [
-                    Expanded(child: Center(
-                      child: Text(
-                        'Investment Goal :',
-                        style: TextStyle(
-                          // color: Colors.green,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          '120000',
-                          style: TextStyle(
-                            // color: Colors.green,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-
-
-                  ]
-              ),
-            ),
-
-            Divider(
-              color: Colors.grey,
-              thickness: 1,
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 5.0,top: 5.0),
-              child: Row(
-                  children: [
-                    Expanded(child: Center(
-                      child: Text(
-                        'Raise :',
-                        style: TextStyle(
-                          // color: Colors.green,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          '120000',
-                          style: TextStyle(
-                            // color: Colors.green,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-
-
-                  ]
-              ),
-            ),
-
-            Divider(
-              color: Colors.grey,
-              thickness: 1,
-            ),
-
-
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 5.0,top: 5.0),
-              child: Row(
-                  children: [
-                    Expanded(child: Center(
-                      child: Text(
-                        'In Waiting :',
-                        style: TextStyle(
-                          // color: Colors.green,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          '120000',
-                          style: TextStyle(
-                            // color: Colors.green,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-
-
-                  ]
-              ),
-            ),
-
-            Divider(
-              color: Colors.grey,
-              thickness: 1,
-            ),
-
-
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 5.0,top: 5.0),
-              child: Row(
-                  children: [
-                    Expanded(child: Center(
-                      child: Text(
-                        'Project Duration :',
-                        style: TextStyle(
-                          // color: Colors.green,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          '120000',
-                          style: TextStyle(
-                            // color: Colors.green,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-
-
-                  ]
-              ),
-            ),
-
-            Divider(
-              color: Colors.grey,
-              thickness: 1,
-            ),
-
-
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 5.0,top: 5.0),
-              child: Row(
-                  children: [
-                    Expanded(child: Center(
-                      child: Text(
-                        'Min Investment :',
-                        style: TextStyle(
-                          // color: Colors.green,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          '120000',
-                          style: TextStyle(
-                            // color: Colors.green,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-
-
-                  ]
-              ),
-            ),
-
-            Divider(
-              color: Colors.grey,
-              thickness: 1,
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 5.0,top: 5.0),
-              child: Row(
-                  children: [
-                    Expanded(child: Center(
-                      child: Text(
-                        'ROI:',
-                        style: TextStyle(
-                          // color: Colors.green,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          '120000',
-                          style: TextStyle(
-                            // color: Colors.green,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-
-
-                  ]
-              ),
-            ),
-
-            Divider(
-              color: Colors.grey,
-              thickness: 1,
-            ),
-
-
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 5.0,top: 5.0),
-              child: Row(
-                  children: [
-                    Expanded(child: Center(
-                      child: Text(
-                        'Project Status :',
-                        style: TextStyle(
-                          // color: Colors.green,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          '120000',
-                          style: TextStyle(
-                            // color: Colors.green,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-
-
-                  ]
-              ),
-            ),
-
           ],
         ),
       ),
+    );
+  }
+
+  TableRow _buildTableRow(String label, String value) {
+    return TableRow(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Text(
+              value,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

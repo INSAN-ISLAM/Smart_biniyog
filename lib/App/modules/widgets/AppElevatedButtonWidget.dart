@@ -15,13 +15,13 @@ class AppElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 55,
+      height: 45,
       width: double.infinity,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               // side: BorderSide(color: Colors.red),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(6)),
               backgroundColor: Color,
              ),
           onPressed: onTap,
